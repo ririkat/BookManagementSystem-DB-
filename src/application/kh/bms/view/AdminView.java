@@ -1,3 +1,4 @@
+package application.kh.bms.view;
 //package application.kh.bms.view;
 //
 //import java.io.IOException;
