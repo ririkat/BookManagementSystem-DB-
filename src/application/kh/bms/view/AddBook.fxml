@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.kh.bms.view.AddBookView">
+   <children>
+      <Pane prefHeight="62.0" prefWidth="600.0" style="-fx-background-color: #D8BFD8;">
+         <children>
+            <Text fill="WHITE" layoutX="196.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="도서 관리 - 추가">
+               <font>
+                  <Font name="Malgun Gothic Bold" size="30.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnBack" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#moveBack" style="-fx-background-color: #00000000;" text="뒤로가기" textFill="WHITE">
+               <font>
+                  <Font name="Malgun Gothic Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Accordion layoutX="14.0" layoutY="14.0" />
+      <Accordion layoutX="206.0" layoutY="14.0" />
+      <Accordion layoutX="102.0" layoutY="163.0" />
+      <TextField fx:id="tfBookName" layoutX="188.0" layoutY="250.0" prefHeight="29.0" prefWidth="300.0" promptText="ex) 나는 나로 살기로 했다." />
+      <Text fill="GREY" layoutX="113.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="책제목" textAlignment="CENTER" wrappingWidth="47.68749475479126">
+         <font>
+            <Font name="Malgun Gothic Bold" size="14.0" />
+         </font></Text>
+      <Text fill="GREY" layoutX="116.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="출판사" textAlignment="CENTER">
+         <font>
+            <Font name="Malgun Gothic Bold" size="14.0" />
+         </font></Text>
+      <Text fill="GREY" layoutX="116.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="저  자 " textAlignment="CENTER">
+         <font>
+            <Font name="Malgun Gothic Bold" size="14.0" />
+         </font></Text>
+      <Text fill="GREY" layoutX="116.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="책장르" textAlignment="CENTER">
+         <font>
+            <Font name="Malgun Gothic Bold" size="14.0" />
+         </font></Text>
+      <Text fill="GREY" layoutX="116.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="책코드" textAlignment="CENTER">
+         <font>
+            <Font name="Malgun Gothic Bold" size="14.0" />
+         </font></Text>
+      <TextField fx:id="tfAuthor" layoutX="188.0" layoutY="301.0" prefHeight="29.0" prefWidth="300.0" promptText="ex) 김수현" />
+      <TextField fx:id="tfPublishingHouse" layoutX="188.0" layoutY="352.0" prefHeight="29.0" prefWidth="300.0" promptText="ex)abc..." />
+      <TextField fx:id="tfCategory" layoutX="188.0" layoutY="403.0" prefHeight="29.0" prefWidth="300.0" promptText="ex)소설, 수필, 전문서적...etc" />
+      <TextField fx:id="tfCode" layoutX="188.0" layoutY="202.0" prefHeight="29.0" prefWidth="300.0" promptText="ex)AA01" />
+      <Button fx:id="btnAdd" layoutX="108.0" layoutY="481.0" mnemonicParsing="false" onAction="#addTest" prefHeight="39.0" prefWidth="384.0" style="-fx-background-color: #D8BFD8;" text="추가" textFill="WHITE">
+         <font>
+            <Font name="Malgun Gothic Bold" size="18.0" />
+         </font></Button>
+      <Text fill="GREY" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Book Add-" textAlignment="CENTER" wrappingWidth="600.0000000298023">
+         <font>
+            <Font name="Malgun Gothic Bold" size="24.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>
