@@ -1,17 +1,31 @@
 package application.kh.bms.common;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class JDBCTemplate {
+	private static Properties prop = new Properties();
+
+	public JDBCTemplate() {
+		try {
+			prop.load(new FileReader("resources/driver.properties"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static Connection getConnection() {
 		Connection conn = null;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@49.172.19.2:1521:xe", "bms_test", "bms_test");
+			Class.forName(prop.getProperty("driver"));
+			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"),
+					prop.getProperty("pw"));
 			conn.setAutoCommit(false);
 
 		} catch (Exception e) {
