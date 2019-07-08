@@ -18,8 +18,7 @@ public class User implements Serializable {
    private String addr;
    private String phone;
    private boolean adminCheck;
-   //책코드,반납일자
-   //hashmap 사용
+  
    private HashMap<String, GregorianCalendar> retalList = new HashMap<String, GregorianCalendar>();
    
    public User(String id, String pw, String name, String gender, String addr, String phone, boolean adminCheck) {
@@ -109,4 +108,5 @@ public class User implements Serializable {
    public void delRentalList(String key) {
       this.retalList.remove(key);
    }
+   
 }

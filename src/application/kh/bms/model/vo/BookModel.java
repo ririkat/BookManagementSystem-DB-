@@ -12,12 +12,13 @@ public class BookModel implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -2967084248634846898L;
-	private String code ; //Ã¥ ÄÚµå ¹øÈ£
-	private String bookName ;  // µµ¼­¸í
-	private String author ; //ÀúÀÚ
-	private String publishingHouse; //ÃâÆÇ»ç
-	private String category ; // Àå¸£
-	private boolean rental; //´ë¿©¿©ºÎ 
+	private String code ; //Ã¥ ï¿½Úµï¿½ ï¿½ï¿½È£
+	private String bookName ;  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String author ; //ï¿½ï¿½ï¿½ï¿½
+	private String publishingHouse; //ï¿½ï¿½ï¿½Ç»ï¿½
+	private String category ; // ï¿½å¸£
+	private boolean rental; //ï¿½ë¿©ï¿½ï¿½ï¿½ï¿½
+	private String content;
 	
 
 
@@ -28,13 +29,14 @@ public class BookModel implements Serializable {
 		rental = false;
 	}
 
-	public BookModel(String code, String bookName, String author, String publisgingHouse, String category) {
+	public BookModel(String code, String bookName, String author, String publisgingHouse, String category,String content) {
 		super();
 		this.code = code;
 		this.bookName = bookName;
 		this.author = author;
 		this.publishingHouse = publisgingHouse;
 		this.category = category;
+		this.content = content;
 //		this.rental = rental;
 		
 	}
@@ -87,4 +89,12 @@ public class BookModel implements Serializable {
 		this.rental = rental;
 	}
 
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
 }
