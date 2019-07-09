@@ -159,17 +159,14 @@ public class UserSearchView implements Initializable {
 
 	@FXML
 	public void update() {
+
 		try {
 			String id = String.valueOf(table.getSelectionModel().getSelectedItem().getId());
-			for (int i = 0; i < temp.size(); i++) {
-				if (temp.get(i).getId().equals(id)) {
-					selectUser = temp.get(i);
-				}
-			}
+			selectUser = userSearchController.selectUser(id);
 
 			Stage newStage = new Stage();
-			Parent root = FXMLLoader
-					.load(getClass().getClassLoader().getResource("application/kh/bms/view/userUpdate.fxml"));
+			Parent root;
+			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/kh/bms/view/userUpdate.fxml"));
 			Scene scene = new Scene(root);
 			newStage.setScene(scene);
 			newStage.setTitle("유저정보수정");
@@ -177,12 +174,10 @@ public class UserSearchView implements Initializable {
 
 			Stage primaryStage = (Stage) btnUpdate.getScene().getWindow();
 			primaryStage.close();
-
-			// uuv.userInformationLoad(selectUser);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	@FXML

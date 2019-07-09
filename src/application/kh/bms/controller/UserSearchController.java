@@ -21,4 +21,10 @@ public class UserSearchController {
 		}
 		return temp2;
 	}
+
+	public User selectUser(String id) {
+		User temp = service.oneUserSelect(id);
+
+		return temp;
+	}
 }

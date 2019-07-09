@@ -80,36 +80,20 @@ public class UserUpdateView implements Initializable {
 	@FXML
 	private void backMove() {
 		try {
-            Stage newStage = new Stage();
-            Parent root = FXMLLoader
-                  .load(getClass().getClassLoader().getResource("application/kh/bms/view/userSearch.fxml"));
-            Scene scene = new Scene(root);
-            newStage.setScene(scene);
-            newStage.setTitle("메인메뉴");
-            newStage.show();
+			Stage newStage = new Stage();
+			Parent root = FXMLLoader
+					.load(getClass().getClassLoader().getResource("application/kh/bms/view/userSearch.fxml"));
+			Scene scene = new Scene(root);
+			newStage.setScene(scene);
+			newStage.setTitle("메인메뉴");
+			newStage.show();
 
-            Stage primaryStage = (Stage) btnBack.getScene().getWindow();
-             primaryStage.close();
-         }
-         catch (IOException e) {
-            e.printStackTrace();
-         }
+			Stage primaryStage = (Stage) btnBack.getScene().getWindow();
+			primaryStage.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
-	// 회원 정보 수정할 User의 정보를 Controller로부터 Load함
-//	@FXML
-//	public void userInformationLoad(User selUser) {
-////		user = userUpdateController.loadData(id);
-//		this.user=selUser;
-//		System.out.println(user.getId());
-//		System.out.println(user.getPw());
-//		System.out.println(user.toString());
-////		tfPw.setText(user.getPw());
-//		tfName.setText(user.getName());
-////		tfAddr.setText(user.getAddr());
-////		comGender.setPromptText(user.getGender());0
-////		tfPhone.setText(user.getPhone());
-//	}
 
 	// 회원 정보 수정시 설정된 PW길이 8~12자 체크 로직 수행후 True 면 유저 정보 업데이트
 	// False 일시 패스워드 길이 에러 출력
@@ -119,7 +103,7 @@ public class UserUpdateView implements Initializable {
 		userUpdateController.updateUser(tID.getText(), tfName.getText(), tfAddr.getText(),
 				comGender.getValue().toString(), tfPhone.getText());
 
-//		new UpdateSuccessView().showUpdateSuccess();
+		backMove();
 
 	}
 
