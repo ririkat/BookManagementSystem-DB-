@@ -48,7 +48,6 @@ public class LoginView{
 		case 3:
 			lMessage.setStyle("-fx-text-fill: green");
 			lMessage.setText("로그인성공!");
-			dao.setNowUser(loginId);
 			try {
 				Stage newStage = new Stage();
 				Parent root = FXMLLoader

@@ -64,6 +64,7 @@ public class UserUpdateView implements Initializable {
 	// Combox의 초기값을 list로 설정, 회원 정보 수정창 로드시에 Data를 불러들임
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		user = UserSearchView.getSelectUser();
 		lID.setText(user.getId());
 		tfPw.setText(user.getPw());
 		tfPw.setEditable(false);
