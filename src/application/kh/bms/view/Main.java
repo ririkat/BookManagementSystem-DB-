@@ -16,7 +16,7 @@ public class Main extends Application {
 					.load(getClass().getClassLoader().getResource("application/kh/bms/view/Login.fxml"));
 			Scene scene = new Scene(root, 600, 600);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setTitle("ï¿½ï¿½Ùµï¿½ï¿½ï¿½ï¿½ï¿½");
+			primaryStage.setTitle("µµ¼­°ü¸®");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {

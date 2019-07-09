@@ -36,9 +36,16 @@ public class LoginView{
 
 		LoginController lc = new LoginController();
 		int check = lc.checkLogin(loginId,loginPw);
-		if(check==-1) {
-			lMessage.setText("잘못된 정보를 입력하셨습니다. 다시 입력하세요.");
-		}else {
+		// 1-ID , 2-PW 3-LoginSuccess
+		
+		switch(check) {
+		case 1:
+			lMessage.setText("ID를 잘못입력하셨습니다.");
+			break;
+		case 2:
+			lMessage.setText("PW를 잘못입력하셨습니다.");
+			break;
+		case 3:
 			lMessage.setStyle("-fx-text-fill: green");
 			lMessage.setText("로그인성공!");
 			dao.setNowUser(loginId);
@@ -57,6 +64,7 @@ public class LoginView{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			break;
 		}
 	}
 	
