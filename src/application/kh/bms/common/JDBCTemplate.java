@@ -12,17 +12,10 @@ import java.util.Properties;
 public class JDBCTemplate {
 	private static Properties prop = new Properties();
 
-	public JDBCTemplate() {
-		try {
-			prop.load(new FileReader("resources/driver.properties"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public static Connection getConnection() {
 		Connection conn = null;
 		try {
+			prop.load(new FileReader("resources/driver.properties"));
 			Class.forName(prop.getProperty("driver"));
 			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"),
 					prop.getProperty("pw"));

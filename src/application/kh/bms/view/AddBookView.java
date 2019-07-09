@@ -91,25 +91,25 @@ public class AddBookView /* implements Initializable */ {
 		}
 	}
 
-	@FXML
-	public void addTest() {
-		
-		System.out.println(tfCode.getText());
-		if(tfCode.getText().isEmpty()|| tfBookName.getText().isEmpty() ||  tfAuthor.getText().isEmpty() ||
-				tfPublishingHouse.getText().isEmpty() || tfCategory.getText().isEmpty() ) {
-			fail();
-		}else {
-			if(bookController.addBook(new BookModel(tfCode.getText(), tfBookName.getText(), tfAuthor.getText(),
-					tfPublishingHouse.getText(), tfCategory.getText()))) {
-				succ();
-			}else {
-				fail();
-			}
-		}
-			
-		
-		
-	}
+//	@FXML
+//	public void addTest() {
+//		
+//		System.out.println(tfCode.getText());
+//		if(tfCode.getText().isEmpty()|| tfBookName.getText().isEmpty() ||  tfAuthor.getText().isEmpty() ||
+//				tfPublishingHouse.getText().isEmpty() || tfCategory.getText().isEmpty() ) {
+//			fail();
+//		}else {
+//			if(bookController.addBook(new BookModel(tfCode.getText(), tfBookName.getText(), tfAuthor.getText(),
+//					tfPublishingHouse.getText(), tfCategory.getText()))) {
+//				succ();
+//			}else {
+//				fail();
+//			}
+//		}
+//			
+//		
+//		
+//	}
 
 	@FXML
 	public void moveBack() {

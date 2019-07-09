@@ -1,7 +1,5 @@
 package application.kh.bms.view;
 
-import application.kh.bms.model.dao.LoadSave;
-import application.kh.bms.model.vo.BookModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

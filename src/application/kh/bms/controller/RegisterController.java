@@ -1,26 +1,21 @@
 package application.kh.bms.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import application.kh.bms.model.dao.LoadSave;
+import application.kh.bms.model.service.UserService;
 import application.kh.bms.model.vo.User;
 
 public class RegisterController {
 	private LoadSave dao = LoadSave.getDao();
 	private ArrayList<User> temp = dao.loadUser();
+	private UserService service = new UserService();
 
 	public boolean checkedId(String id) {
 		boolean check = true;
-		for (int i = 0; i < temp.size(); i++) {
-			if (temp.get(i).getId().equals(id)) {
-				check = false;
-				break;
-			}
+		User temp = service.oneUserSelect(id);
+		if (temp!=null) {
+			check = false;
 		}
 		return check;
 	}
@@ -60,8 +55,8 @@ public class RegisterController {
 
 	public void addUser(String regId, String regPw, String regName, String regGender, String regAddr, String regphone,
 			boolean adChk) {
-		temp.add(new User(regId, regPw, regName, regGender, regAddr, regphone, adChk));
-		dao.saveUser(temp);
+		User temp = new User(regId, regPw, regName, regGender, regAddr, regphone, adChk);
+		service.addUser(temp);
 	}
 
 	// ------------------------------------------------------------
