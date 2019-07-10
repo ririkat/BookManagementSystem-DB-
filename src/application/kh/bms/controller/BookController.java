@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 
 public class BookController {
+	//¹Ù²ãº¼±î¿ä~??
 
 	int count = 0;
 	BookModel book = new BookModel();
