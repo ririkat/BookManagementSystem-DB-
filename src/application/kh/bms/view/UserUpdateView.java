@@ -102,9 +102,7 @@ public class UserUpdateView implements Initializable {
 		System.out.println(comGender.getValue().toString());
 		userUpdateController.updateUser(tID.getText(), tfName.getText(), tfAddr.getText(),
 				comGender.getValue().toString(), tfPhone.getText());
-
 		backMove();
-
 	}
 
 	@FXML
