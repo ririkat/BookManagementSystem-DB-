@@ -252,16 +252,18 @@ public class MainSearchView implements Initializable {
 	public void changeToDetailPage() {
 
 		try {
-			System.out.println("받아왔니? : " + model.getCode());
-			// detailPageView.loadSelectedRow(model);
-			SelectedBook.selBook.setBookName(model.getBookName());
-			SelectedBook.selBook.setAuthor(model.getAuthor());
-			SelectedBook.selBook.setPublishingHouse(model.getPublishingHouse());
-			SelectedBook.selBook.setCategory(model.getCategory());
-			SelectedBook.selBook.setRental(model.getRental().get());
-			SelectedBook.selBook.setCode(model.getCode());
-			SelectedBook.selBook.setContent(model.getContent().toString());
-			System.out.println("들어갔니? : " + SelectedBook.selBook.getCode());
+//			System.out.println("받아왔니? : " + model.getCode());
+//			// detailPageView.loadSelectedRow(model);
+//			SelectedBook.selBook.setBookName(model.getBookName());
+//			SelectedBook.selBook.setAuthor(model.getAuthor());
+//			SelectedBook.selBook.setPublishingHouse(model.getPublishingHouse());
+//			SelectedBook.selBook.setCategory(model.getCategory());
+//			SelectedBook.selBook.setRental(model.getRental().get());
+//			SelectedBook.selBook.setCode(model.getCode());
+////			SelectedBook.selBook.setContent(model.getContent().toString());
+//			System.out.println("들어갔니? : " + SelectedBook.selBook.getCode());
+			
+			InformationManager.getInformationManager().setNowBook(bs.oneBookSelect( model.getCode()));
 
 			Stage newStage = new Stage();
 			Parent root = FXMLLoader

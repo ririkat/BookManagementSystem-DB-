@@ -13,10 +13,10 @@ public class BookTable {
 	private final SimpleStringProperty publishingHouse;
 	private final SimpleStringProperty category;
 	private final SimpleBooleanProperty rental;
-	private final SimpleStringProperty content;
+//	private final SimpleStringProperty content;
 
 	public BookTable() {
-		this(null, null, null, null, null, false, null);
+		this(null, null, null, null, null, false);
 	}
 
 //	public BookTable(String code, String bookName, String author, String publishingHouse, String category,
@@ -32,7 +32,7 @@ public class BookTable {
 //	}
 
 	public BookTable(String code, String bookName, String author, String publishingHouse, String category,
-			Boolean rental, String content) {
+			Boolean rental) {
 		super();
 		this.code = new SimpleStringProperty(code);
 		this.bookName = new SimpleStringProperty(bookName);
@@ -40,7 +40,7 @@ public class BookTable {
 		this.publishingHouse = new SimpleStringProperty(publishingHouse);
 		this.category = new SimpleStringProperty(category);
 		this.rental = new SimpleBooleanProperty(rental);
-		this.content = new SimpleStringProperty(content);
+//		this.content = new SimpleStringProperty(content);
 
 	}
 
@@ -120,18 +120,18 @@ public class BookTable {
 		return rental;
 	}
 
-	public SimpleStringProperty getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content.set(content);
-	}
+//	public SimpleStringProperty getContent() {
+//		return content;
+//	}
+//
+//	public void setContent(String content) {
+//		this.content.set(content);
+//	}
 
 	@Override
 	public String toString() {
 		return "BookTable [code=" + code + ", bookName=" + bookName + ", author=" + author + ", publishingHouse="
-				+ publishingHouse + ", category=" + category + ", rental=" + rental + ", content=" + content + "]";
+				+ publishingHouse + ", category=" + category + ", rental=" + rental  + "]";
 	}
 
 }

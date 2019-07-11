@@ -13,7 +13,7 @@ public class BookUpdateController {
    private List<BookModel> books = new ArrayList<BookModel>();
    private String thisCode = "";
 
-   public void updateBook(String code, String bookName, String category, String author, String publishingHouse) {
+   public void updateBook(String code, String bookName, String category, String author, String publishingHouse, String content) {
       books = bs.selectAll();
       //BookModel nowBook = null;
 //      System.out.println(code);
@@ -46,6 +46,7 @@ public class BookUpdateController {
       b.setCategory(category);
       b.setAuthor(author);
       b.setPublisgingHouse(publishingHouse);
+      b.setContent(content);
       
       bs.updateBook(b);
    

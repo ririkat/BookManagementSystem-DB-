@@ -35,13 +35,14 @@ public class BookModelDao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
+				b=new BookModel();
 				b.setCode(rs.getString("code"));
 				b.setBookName(rs.getString("book_name"));
 				b.setAuthor(rs.getString("author"));
 				b.setCategory(rs.getString("category"));
-				b.setPublisgingHouse("publishinghouse");
+				b.setPublisgingHouse(rs.getString("publishinghouse"));
 				b.setRental(Boolean.valueOf(rs.getString("rental")));
-				b.setContent("content");
+				b.setContent(rs.getString("content"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -130,8 +131,8 @@ public class BookModelDao {
 			pstmt.setString(2, b.getAuthor());
 			pstmt.setString(3, b.getPublishingHouse());
 			pstmt.setString(4, b.getCategory());
-//			pstmt.setString(5, b.getContent());
-			pstmt.setString(5, b.getCode());
+			pstmt.setString(5, b.getContent());
+			pstmt.setString(6, b.getCode());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -164,9 +165,9 @@ public class BookModelDao {
 				b.setBookName(rs.getString("book_name"));
 				b.setAuthor(rs.getString("author"));
 				b.setCategory(rs.getString("category"));
-				b.setPublisgingHouse("publishinghouse");
+				b.setPublisgingHouse(rs.getString("publishinghouse"));
 				b.setRental(Boolean.valueOf(rs.getString("rental")));
-				b.setContent("content");
+				b.setContent(rs.getString("content"));
 
 				list.add(b);
 			}

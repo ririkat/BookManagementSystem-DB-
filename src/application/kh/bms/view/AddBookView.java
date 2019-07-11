@@ -27,7 +27,7 @@ public class AddBookView /* implements Initializable */ {
 	private Button btnBack, btnAdd, btnFail, btnSucc;
 
 	@FXML
-	private TextArea taCon;
+	private TextArea taCon= new TextArea();
 
 	@FXML
 	private Button okayBtn; // 반납하기 팝업창에서 확인 버튼

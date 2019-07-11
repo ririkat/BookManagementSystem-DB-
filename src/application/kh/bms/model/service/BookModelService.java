@@ -11,7 +11,7 @@ import application.kh.bms.model.vo.BookModel;
 public class BookModelService {
 	private BookModelDao dao = new BookModelDao();
 
-	public BookModel oneUserSelect(String code) {
+	public BookModel oneBookSelect(String code) {
 		Connection conn = JDBCTemplate.getConnection();
 		BookModel b = dao.oneBookSelect(conn, code);
 		JDBCTemplate.close(conn);

@@ -49,10 +49,7 @@ public class RentalDao {
 		return temp;
 	}
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> 8b2020593e71e758ab4d58dafd8f7761a7e73849
+
 	public int bookRentalUpdate(Connection conn, String ch, String code) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -115,9 +112,6 @@ public class RentalDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return temp;
-<<<<<<< HEAD
-=======
 
->>>>>>> 8b2020593e71e758ab4d58dafd8f7761a7e73849
 	}
 }

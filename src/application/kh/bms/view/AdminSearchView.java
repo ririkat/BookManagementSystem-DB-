@@ -362,6 +362,7 @@ import java.util.ResourceBundle;
 
 import application.kh.bms.controller.BookController;
 import application.kh.bms.controller.BookSearchController;
+import application.kh.bms.model.dao.InformationManager;
 //import application.kh.bms.model.dao.LoadSave;
 import application.kh.bms.model.vo.BookModel;
 import application.kh.bms.model.vo.BookTable;
@@ -441,7 +442,7 @@ public class AdminSearchView implements Initializable {
    List<BookTable> books = new ArrayList<BookTable>();
    List<BookModel> realBooks = null;
    private List<BookModel> temp = bookController.getBooks();
-
+   private InformationManager im = InformationManager.getInformationManager();
    public static BookTable selBook = new BookTable();
 
    public static BookTable getSelBook() {
@@ -579,15 +580,17 @@ public class AdminSearchView implements Initializable {
    public void editBook() {
 
       try {
+    	  
+    	  im.setNowBook(bookController.loadBook(model.getCode()));
 
-         System.out.println("받아왔니? : " + model.getCode());
-         SelectedBook.selBook.setBookName(model.getBookName());
-         SelectedBook.selBook.setAuthor(model.getAuthor());
-         SelectedBook.selBook.setPublishingHouse(model.getPublishingHouse());
-         SelectedBook.selBook.setCategory(model.getCategory());
-         SelectedBook.selBook.setRental(model.getRental().get());
-         SelectedBook.selBook.setCode(model.getCode());
-         System.out.println("들어갔니? : " + SelectedBook.selBook.getCode());
+//         System.out.println("받아왔니? : " + model.getCode());
+//         SelectedBook.selBook.setBookName(model.getBookName());
+//         SelectedBook.selBook.setAuthor(model.getAuthor());
+//         SelectedBook.selBook.setPublishingHouse(model.getPublishingHouse());
+//         SelectedBook.selBook.setCategory(model.getCategory());
+//         SelectedBook.selBook.setRental(model.getRental().get());
+//         SelectedBook.selBook.setCode(model.getCode());
+//         System.out.println("들어갔니? : " + SelectedBook.selBook.getCode());
 
          Stage newStage = new Stage();
          Parent root = FXMLLoader

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.kh.bms.controller.BookUpdateController;
+import application.kh.bms.model.dao.InformationManager;
 //import application.kh.bms.model.dao.LoadSave;
 import application.kh.bms.model.vo.BookModel;
 import application.kh.bms.model.vo.BookTable;
@@ -17,18 +18,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class BookUpdateView implements Initializable {
    private BookUpdateController bookUpdateController = new BookUpdateController();
-   ArrayList<BookModel> books = new ArrayList<BookModel>();
+   private ArrayList<BookModel> books = new ArrayList<BookModel>();
+   private InformationManager im= InformationManager.getInformationManager();	
 
    @FXML
    private Button btnUpdate, btnBack;
 
    @FXML
    private TextField tfName, tfCategory, tfAuthor, tfCode, tfPublisher;
+   
+   @FXML
+   private TextArea taCon=new TextArea();
    
 
    @FXML
@@ -47,6 +53,7 @@ public class BookUpdateView implements Initializable {
       tfCategory.setText("");
       tfAuthor.setText("");
       tfPublisher.setText("");
+      taCon.setText("");
    
 
    }
@@ -75,7 +82,7 @@ public class BookUpdateView implements Initializable {
    @FXML
    private void updateBook() {
       
-      bookUpdateController.updateBook(lblCode.getText(), tfName.getText(),tfCategory.getText(), tfAuthor.getText(),tfPublisher.getText() );
+      bookUpdateController.updateBook(lblCode.getText(), tfName.getText(),tfCategory.getText(), tfAuthor.getText(),tfPublisher.getText(), taCon.getText() );
       
       try {
           Stage newStage = new Stage();
@@ -98,13 +105,13 @@ public class BookUpdateView implements Initializable {
    @Override
    public void initialize(URL location, ResourceBundle resources) {
       
-      lblCode.setText(SelectedBook.selBook.getCode());
-      tfName.setText(SelectedBook.selBook.getBookName());
-      tfCategory.setText(SelectedBook.selBook.getCategory());
-      tfAuthor.setText(SelectedBook.selBook.getAuthor());
-      tfPublisher.setText(SelectedBook.selBook.getPublishingHouse());
+      lblCode.setText(im.getNowBook().getCode());
+      tfName.setText(im.getNowBook().getBookName());
+      tfCategory.setText(im.getNowBook().getCategory());
+      tfAuthor.setText(im.getNowBook().getAuthor());
+      tfPublisher.setText(im.getNowBook().getPublishingHouse());
+      taCon.setText(im.getNowBook().getContent());
       
-   
    }
    
 

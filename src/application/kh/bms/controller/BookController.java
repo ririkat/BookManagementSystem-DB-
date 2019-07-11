@@ -60,5 +60,10 @@ public class BookController {
 			bs.deleteBook(bookCode);
 		}
 	}
+	
+	public BookModel loadBook(String code) {
+		BookModel b = bs.oneBookSelect(code);
+		return b;
+	}
 
 }

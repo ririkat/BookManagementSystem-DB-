@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.kh.bms.controller.RentalController;
+import application.kh.bms.model.dao.InformationManager;
 //import application.kh.bms.model.dao.LoadSave;
 import application.kh.bms.model.vo.BookModel;
 import application.kh.bms.model.vo.SelectedBook;
@@ -43,6 +44,7 @@ public class DetailPageView implements Initializable {
 	private TextArea taCon;
 
 	private RentalController rentalController = new RentalController();
+	private InformationManager im = InformationManager.getInformationManager();
 
 	private ArrayList<BookModel> books = new ArrayList<BookModel>();
 //	private LoadSave dao = LoadSave.getDao();
@@ -50,15 +52,15 @@ public class DetailPageView implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		bookCodeLab.setText(SelectedBook.selBook.getCode());
-		bookNameLab.setText(SelectedBook.selBook.getBookName());
-		authorLab.setText(SelectedBook.selBook.getAuthor());
-		pubLab.setText(SelectedBook.selBook.getPublishingHouse());
-		categoryLab.setText(SelectedBook.selBook.getCategory());
-		taCon.setText(SelectedBook.selBook.getContent().toString());
-		System.out.println("넘겨받은 도서코드 : " + SelectedBook.selBook.getCode());
+		bookCodeLab.setText(im.getNowBook().getCode());
+		bookNameLab.setText(im.getNowBook().getBookName());
+		authorLab.setText(im.getNowBook().getAuthor());
+		pubLab.setText(im.getNowBook().getPublishingHouse());
+		categoryLab.setText(im.getNowBook().getCategory());
+		taCon.setText(im.getNowBook().getContent());
+//		System.out.println("넘겨받은 도서코드 : " + im.getNowBook().getCode());
 
-		if (SelectedBook.selBook.isRental() == false) {
+		if (im.getNowBook().isRental() == false) {
 			rentalLab.setText("대여 가능");
 			rentalBtn.setDisable(false);
 		} else {
@@ -91,12 +93,12 @@ public class DetailPageView implements Initializable {
 	// 대여하기 버튼 메소드
 	@FXML
 	public void decideRental() {
-		rentalController.addRetalBook(SelectedBook.selBook.getCode());
+		rentalController.addRetalBook(im.getNowBook().getCode());
 
 		rentalLab.setText("대여중");
 		rentalBtn.setDisable(true);
 		
-		rentalController.bookRentalUpdate("1", SelectedBook.selBook.getCode());
+		rentalController.bookRentalUpdate("1",im.getNowBook().getCode());
 
 //		books = dao.loadBook();
 //		for (int i = 0; i < books.size(); i++) {
