@@ -91,14 +91,16 @@ public class DetailPageView implements Initializable {
 
 		rentalLab.setText("´ë¿©Áß");
 		rentalBtn.setDisable(true);
+		
+		rentalController.bookRentalUpdate("1", SelectedBook.selBook.getCode());
 
-		books = dao.loadBook();
-		for (int i = 0; i < books.size(); i++) {
-			if (books.get(i).getCode().equals(SelectedBook.selBook.getCode())) {
-				books.get(i).setRental(true);
-			}
-		}
-		dao.saveBook(books);
+//		books = dao.loadBook();
+//		for (int i = 0; i < books.size(); i++) {
+//			if (books.get(i).getCode().equals(SelectedBook.selBook.getCode())) {
+//				books.get(i).setRental(true);
+//			}
+//		}
+//		dao.saveBook(books);
 		// ---------------------------------------------
 		backToSearchView();
 		// ---------------------------------------------

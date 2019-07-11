@@ -16,4 +16,26 @@ public class RentalService {
 		JDBCTemplate.close(conn);
 		return temp;
 	}
+	
+	public int bookRentalUpdate(String ch, String code) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.bookRentalUpdate(conn, ch, code);
+		if(result==1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+	}
+	
+	public void rentalInsert(String id, String code) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.rentalInsert(conn, id,code);
+		if(result==1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+	}
 }

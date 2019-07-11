@@ -48,4 +48,41 @@ public class RentalDao {
 		}
 		return temp;
 	}
+	
+	public int bookRentalUpdate(Connection conn, String ch, String code) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("bookRentalUpdate");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ch);
+			pstmt.setString(2, code);
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
+	public int rentalInsert(Connection conn, String id, String code) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("rentalInsert");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, code);
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+		
+	}
 }

@@ -111,31 +111,39 @@ public class RentalListView implements Initializable {
 	@FXML
 	public void returnBook() {
 		int result = rentalController.delRentalBook(model.getCode()); // 유저에서 지우기
+		int result2 = rentalController.bookRentalUpdate("0", model.getCode());
 		// ---------------------------------------------------------------------
-		if (result == 1) { // 연체
+		if (result==1) { // 연체
 			System.out.println("연체됐음");
 			fail();
 		}
 
 		else if (result == 0) { // 정상반납
-			System.out.println("정상반납");
-			succ();
+			if(result2==1) {
+//				System.out.println("정상반납");
+				succ();
+			}else {
+				fail();
+			}
 		}
 		// ---------------------------------------------------------------------
 		else { // 에러
-			System.out.println("반납에러!");
+//			System.out.println("반납에러!");
+			fail();
 
 		}
 
 		returnBookBtn.setDisable(true);
+		
+//		rentalController.bookRentalUpdate('0');
 
-		books = dao.loadBook();
-		for (int i = 0; i < books.size(); i++) {
-			if (books.get(i).getCode().equals(model.getCode())) {
-				books.get(i).setRental(false); // 북리스트에서 상태변경
-				break;
-			}
-		}
+//		books = dao.loadBook();
+//		for (int i = 0; i < books.size(); i++) {
+//			if (books.get(i).getCode().equals(model.getCode())) {
+//				books.get(i).setRental(false); // 북리스트에서 상태변경
+//				break;
+//			}
+//		}
 //		dao.saveBook(books);
 
 		// 테이블 세팅
