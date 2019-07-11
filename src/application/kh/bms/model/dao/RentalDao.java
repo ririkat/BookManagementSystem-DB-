@@ -48,7 +48,7 @@ public class RentalDao {
 		}
 		return temp;
 	}
-<<<<<<< HEAD
+
 	
 	public int bookRentalUpdate(Connection conn, String ch, String code) {
 		PreparedStatement pstmt = null;
@@ -84,8 +84,7 @@ public class RentalDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
-		
-=======
+	}
 
 	public ArrayList<Rental> selectBookCode(Connection conn, String bookCode) {
 		PreparedStatement pstmt = null;
@@ -113,6 +112,5 @@ public class RentalDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return temp;
->>>>>>> c3ab26791ef7cec3391a26e58c3c8e08c4a3d31c
 	}
 }

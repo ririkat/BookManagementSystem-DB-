@@ -2,10 +2,7 @@ package application.kh.bms.controller;
 
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-//import application.kh.bms.model.dao.LoadSave;
-=======
->>>>>>> c3ab26791ef7cec3391a26e58c3c8e08c4a3d31c
+
 import application.kh.bms.model.service.RentalService;
 import application.kh.bms.model.service.UserService;
 import application.kh.bms.model.vo.Rental;

@@ -29,7 +29,7 @@ public class BookSearchController {
 		temp = bs.selectAll();
 		for (int i = 0; i < temp.size(); i++) {
 			BookTable bt = new BookTable(temp.get(i).getCode(), temp.get(i).getBookName(), temp.get(i).getAuthor(),
-					temp.get(i).getPublishingHouse(), temp.get(i).getCategory(), temp.get(i).isRental());
+					temp.get(i).getPublishingHouse(), temp.get(i).getCategory(), temp.get(i).isRental(),temp.get(i).getContent());
 			temp2.add(bt);
 		}
 		return temp2;
