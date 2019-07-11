@@ -85,7 +85,6 @@ public class MainSearchView implements Initializable {
 
 	private BookSearchController bookSearchController = new BookSearchController();
 	private List<BookTable> books = new ArrayList<BookTable>();
-	
 
 	// 테이블열선택
 	public int row = -1;
@@ -261,6 +260,7 @@ public class MainSearchView implements Initializable {
 			SelectedBook.selBook.setCategory(model.getCategory());
 			SelectedBook.selBook.setRental(model.getRental().get());
 			SelectedBook.selBook.setCode(model.getCode());
+			SelectedBook.selBook.setContent(model.getContent().toString());
 			System.out.println("들어갔니? : " + SelectedBook.selBook.getCode());
 
 			Stage newStage = new Stage();
