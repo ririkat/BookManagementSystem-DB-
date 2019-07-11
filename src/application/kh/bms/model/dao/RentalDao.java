@@ -48,4 +48,32 @@ public class RentalDao {
 		}
 		return temp;
 	}
+
+	public ArrayList<Rental> selectBookCode(Connection conn, String bookCode) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectBookCode");
+		ArrayList<Rental> temp = new ArrayList<Rental>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bookCode);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Rental r = new Rental();
+				r.setId(rs.getString("id"));
+				r.setCode(rs.getString("code"));
+				r.setReturnDate(rs.getDate("return_date"));
+
+				temp.add(r);
+			}
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return temp;
+	}
 }

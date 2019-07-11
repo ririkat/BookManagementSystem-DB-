@@ -4,16 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import application.kh.bms.model.service.BookModelService;
+import application.kh.bms.model.service.RentalService;
 import application.kh.bms.model.vo.BookModel;
+import application.kh.bms.model.vo.Rental;
 
 public class BookController {
-	//¹Ù²ãº¼±î¿ä~??
+	// ¹Ù²ãº¼±î¿ä~??
 
 	int count = 0;
 	BookModel book = new BookModel();
 	List<BookModel> books = new ArrayList<BookModel>();
 	List<BookModel> realBooks = null;
 	private BookModelService bs = new BookModelService();
+	private RentalService rs = new RentalService();
 
 	public List<BookModel> getBooks() {
 		books = bs.selectAll();
@@ -40,7 +43,7 @@ public class BookController {
 		boolean isSucc = false;
 		if (checkCode(newBook.getCode())) {
 			int result = bs.addBook(newBook);
-			if(result>0) {
+			if (result > 0) {
 				isSucc = true;
 			}
 		} else {
@@ -49,24 +52,13 @@ public class BookController {
 		}
 		return isSucc;
 	}
-	
 
 	public void remove(String bookCode) {
 		realBooks = bs.selectAll();
-		BookModel b = new BookModel();
-		if (realBooks != null) {
-			for (int i = 0; i < realBooks.size(); i++) {
-				if (realBooks.get(i).getCode().equals(bookCode)) {
-					if (!realBooks.get(i).isRental()) {
-						b = realBooks.get(i);
-						bs.deleteBook(b.getCode());
-						break;
-					}
-				}
-			}
+		ArrayList<Rental> temp = rs.selectBookCode(bookCode);
+		if (temp.size() == 0) {
+			bs.deleteBook(bookCode);
 		}
 	}
-	
-	
 
 }

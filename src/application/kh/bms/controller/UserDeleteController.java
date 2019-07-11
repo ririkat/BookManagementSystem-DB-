@@ -1,29 +1,27 @@
 package application.kh.bms.controller;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 
-//import application.kh.bms.model.dao.LoadSave;
-=======
 import application.kh.bms.model.service.RentalService;
->>>>>>> 5c29d16638f518a66b8a4e1f7cc3f0d6f63d5241
 import application.kh.bms.model.service.UserService;
+import application.kh.bms.model.vo.Rental;
 import application.kh.bms.model.vo.User;
 
 public class UserDeleteController {
 	private UserService service = new UserService();
-//	private RentalService rentalService = new 
-	//해야함
+
+	private RentalService rentalService = new RentalService();
+
+	// 해야함
 	public int checkUser(String id, String pw) {
 		int check = -1;
-//		User temp = service.oneUserSelect(id);
-//		
-//		if (temp.getPw().equals(pw)) {
-//			if (users.get(i).getRetalList().isEmpty() == true) {
-//				check = i;
-//				break;
-//			}
-//		}
+		User temp = service.oneUserSelect(id);
+		ArrayList<Rental> list = rentalService.selectAll(id);
+		if (temp.getPw().equals(pw)) {
+			if (list.size() > 0) {
+				check = 1;
+			}
+		}
 
 		return check;
 	}
