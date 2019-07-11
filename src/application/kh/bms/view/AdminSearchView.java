@@ -357,6 +357,7 @@ package application.kh.bms.view;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import application.kh.bms.controller.BookController;
@@ -429,15 +430,17 @@ public class AdminSearchView implements Initializable {
    @FXML
    private TableColumn<BookTable, Boolean> rentalCol;// 대여여부
 
-   private LoadSave dao = LoadSave.getDao();
-   private ArrayList<BookModel> temp = dao.loadBook();
+//   private LoadSave dao = LoadSave.getDao();
+   
+   
    static BookTable model = new BookTable();
 
    BookModel book = new BookModel();
    BookSearchController bookSearchController = new BookSearchController();
    BookController bookController = new BookController();
-   ArrayList<BookTable> books = new ArrayList<BookTable>();
-   ArrayList<BookModel> realBooks = null;
+   List<BookTable> books = new ArrayList<BookTable>();
+   List<BookModel> realBooks = null;
+   private List<BookModel> temp = bookController.getBooks();
 
    public static BookTable selBook = new BookTable();
 

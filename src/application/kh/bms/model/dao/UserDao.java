@@ -50,8 +50,8 @@ public class UserDao {
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(pstmt);
+//			JDBCTemplate.close(rs);
+//			JDBCTemplate.close(pstmt);
 		}
 		return temp;
 	}
@@ -77,7 +77,7 @@ public class UserDao {
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
-			JDBCTemplate.close(pstmt);
+//			JDBCTemplate.close(pstmt);
 		}
 		return result;
 	}
@@ -93,7 +93,7 @@ public class UserDao {
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
-			JDBCTemplate.close(pstmt);
+//			JDBCTemplate.close(pstmt);
 		}
 		return result;
 	}
@@ -125,8 +125,8 @@ public class UserDao {
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(pstmt);
+//			JDBCTemplate.close(rs);
+//			JDBCTemplate.close(pstmt);
 		}
 		return temp;
 	}
@@ -147,7 +147,7 @@ public class UserDao {
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
-			JDBCTemplate.close(pstmt);
+//			JDBCTemplate.close(pstmt);
 		}
 		return result;
 	}

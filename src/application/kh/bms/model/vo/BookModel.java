@@ -40,6 +40,18 @@ public class BookModel implements Serializable {
 //		this.rental = rental;
 		
 	}
+	
+	public BookModel(String code, String bookName, String author, String publisgingHouse, String category) {
+		super();
+		this.code = code;
+		this.bookName = bookName;
+		this.author = author;
+		this.publishingHouse = publisgingHouse;
+		this.category = category;
+//		this.content = content;
+//		this.rental = rental;
+		
+	}
 
 	public String getCode() {
 		return code;

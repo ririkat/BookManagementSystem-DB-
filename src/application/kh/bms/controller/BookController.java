@@ -1,33 +1,26 @@
 package application.kh.bms.controller;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
-import application.kh.bms.model.dao.LoadSave;
+import application.kh.bms.model.service.BookModelService;
 import application.kh.bms.model.vo.BookModel;
-import application.kh.bms.model.vo.BookTable;
-import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
 
 public class BookController {
 	//바꿔볼까요~??
 
 	int count = 0;
 	BookModel book = new BookModel();
-	ArrayList<BookModel> books = new ArrayList<BookModel>();
-	ArrayList<BookModel> realBooks = null;
-	private LoadSave dao = LoadSave.getDao();
+	List<BookModel> books = new ArrayList<BookModel>();
+	List<BookModel> realBooks = null;
+	private BookModelService bs = new BookModelService();
 
-	public ArrayList<BookModel> getBooks() {
-		books = dao.loadBook();
+	public List<BookModel> getBooks() {
+		books = bs.selectAll();
 		return books;
 	}
 
-	public void setBooks(ArrayList<BookModel> books) {
+	public void setBooks(List<BookModel> books) {
 		this.books = books;
 	}
 
@@ -43,32 +36,37 @@ public class BookController {
 	}
 
 	public boolean addBook(BookModel newBook) {
-		books = dao.loadBook();
+//		books = dao.loadBook();
 		boolean isSucc = false;
 		if (checkCode(newBook.getCode())) {
-			books.add(newBook);
-			dao.saveBook(books);
-			isSucc = true;
+			int result = bs.addBook(newBook);
+			if(result>0) {
+				isSucc = true;
+			}
 		} else {
 			System.out.println("중복");
 			isSucc = false;
 		}
 		return isSucc;
 	}
+	
 
 	public void remove(String bookCode) {
-		realBooks = dao.loadBook();
+		realBooks = bs.selectAll();
+		BookModel b = new BookModel();
 		if (realBooks != null) {
 			for (int i = 0; i < realBooks.size(); i++) {
 				if (realBooks.get(i).getCode().equals(bookCode)) {
 					if (!realBooks.get(i).isRental()) {
-						realBooks.remove(i);
-						dao.saveBook(realBooks);
+						b = realBooks.get(i);
+						bs.deleteBook(b.getCode());
 						break;
 					}
 				}
 			}
 		}
 	}
+	
+	
 
 }

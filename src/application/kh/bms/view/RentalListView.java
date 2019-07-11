@@ -3,6 +3,7 @@ package application.kh.bms.view;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import application.kh.bms.controller.BookSearchController;
@@ -10,7 +11,6 @@ import application.kh.bms.controller.RentalController;
 import application.kh.bms.model.dao.LoadSave;
 import application.kh.bms.model.vo.BookModel;
 import application.kh.bms.model.vo.RentalTable;
-import application.kh.bms.model.vo.SelectedBook;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -41,11 +41,11 @@ public class RentalListView implements Initializable {
 	@FXML
 	private TableColumn<RentalTable, String> cateCol = new TableColumn<RentalTable, String>(); // 장르
 
-	BookSearchController bookSearchController = new BookSearchController();
-	ArrayList<RentalTable> rentalBooks = new ArrayList<RentalTable>();
+	private BookSearchController bookSearchController = new BookSearchController();
+	private List<RentalTable> rentalBooks = new ArrayList<RentalTable>();
 	private RentalController rentalController = new RentalController();
 	private LoadSave dao = LoadSave.getDao();
-	private ArrayList<BookModel> books = new ArrayList<BookModel>();
+	private List<BookModel> books = new ArrayList<BookModel>();
 
 	@FXML
 	private Button backBtn; // 뒤로가기 버튼
@@ -136,7 +136,7 @@ public class RentalListView implements Initializable {
 				break;
 			}
 		}
-		dao.saveBook(books);
+//		dao.saveBook(books);
 
 		// 테이블 세팅
 		bookList.clear();
