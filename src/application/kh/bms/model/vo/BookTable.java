@@ -13,14 +13,26 @@ public class BookTable {
 	private final SimpleStringProperty publishingHouse;
 	private final SimpleStringProperty category;
 	private final SimpleBooleanProperty rental;
-//	private final SimpleStringProperty rentalCheck;
+	private final SimpleStringProperty content;
 
 	public BookTable() {
-		this(null, null, null, null, null, false);
+		this(null, null, null, null, null, false, null);
 	}
 
+//	public BookTable(String code, String bookName, String author, String publishingHouse, String category,
+//			Boolean rental) {
+//		super();
+//		this.code = new SimpleStringProperty(code);
+//		this.bookName = new SimpleStringProperty(bookName);
+//		this.author = new SimpleStringProperty(author);
+//		this.publishingHouse = new SimpleStringProperty(publishingHouse);
+//		this.category = new SimpleStringProperty(category);
+//		this.rental = new SimpleBooleanProperty(rental);
+//
+//	}
+
 	public BookTable(String code, String bookName, String author, String publishingHouse, String category,
-			Boolean rental) {
+			Boolean rental, String content) {
 		super();
 		this.code = new SimpleStringProperty(code);
 		this.bookName = new SimpleStringProperty(bookName);
@@ -28,6 +40,8 @@ public class BookTable {
 		this.publishingHouse = new SimpleStringProperty(publishingHouse);
 		this.category = new SimpleStringProperty(category);
 		this.rental = new SimpleBooleanProperty(rental);
+		this.content = new SimpleStringProperty(content);
+
 	}
 
 	public String getCode() {
@@ -42,7 +56,6 @@ public class BookTable {
 		return code;
 	}
 
-	
 	public String getBookName() {
 		return bookName.get();
 	}
@@ -55,7 +68,6 @@ public class BookTable {
 		return bookName;
 	}
 
-	
 	public String getAuthor() {
 		return author.get();
 	}
@@ -68,7 +80,6 @@ public class BookTable {
 		return author;
 	}
 
-	
 	public String getPublishingHouse() {
 		return publishingHouse.get();
 	}
@@ -81,7 +92,6 @@ public class BookTable {
 		return publishingHouse;
 	}
 
-	
 	public String getCategory() {
 		return category.get();
 	}
@@ -94,11 +104,10 @@ public class BookTable {
 		return category;
 	}
 
-	
 	public boolean isRental() {
 		return rental.get();
 	}
-	
+
 	public void setRental(boolean rental) {
 		this.rental.set(rental);
 	}
@@ -111,10 +120,18 @@ public class BookTable {
 		return rental;
 	}
 
+	public SimpleStringProperty getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content.set(content);
+	}
+
 	@Override
 	public String toString() {
 		return "BookTable [code=" + code + ", bookName=" + bookName + ", author=" + author + ", publishingHouse="
-				+ publishingHouse + ", category=" + category + ", rental=" + rental + "]";
+				+ publishingHouse + ", category=" + category + ", rental=" + rental + ", content=" + content + "]";
 	}
 
 }

@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 public class DetailPageView implements Initializable {
@@ -38,6 +39,9 @@ public class DetailPageView implements Initializable {
 	@FXML
 	private Button rentalBtn; // 대여하기 버튼
 
+	@FXML
+	private TextArea taCon;
+
 	private RentalController rentalController = new RentalController();
 
 	private ArrayList<BookModel> books = new ArrayList<BookModel>();
@@ -51,7 +55,7 @@ public class DetailPageView implements Initializable {
 		authorLab.setText(SelectedBook.selBook.getAuthor());
 		pubLab.setText(SelectedBook.selBook.getPublishingHouse());
 		categoryLab.setText(SelectedBook.selBook.getCategory());
-
+		taCon.setText(SelectedBook.selBook.getContent().toString());
 		System.out.println("넘겨받은 도서코드 : " + SelectedBook.selBook.getCode());
 
 		if (SelectedBook.selBook.isRental() == false) {

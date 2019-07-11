@@ -48,6 +48,7 @@ public class RentalDao {
 		}
 		return temp;
 	}
+<<<<<<< HEAD
 	
 	public int bookRentalUpdate(Connection conn, String ch, String code) {
 		PreparedStatement pstmt = null;
@@ -84,5 +85,34 @@ public class RentalDao {
 		}
 		return result;
 		
+=======
+
+	public ArrayList<Rental> selectBookCode(Connection conn, String bookCode) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectBookCode");
+		ArrayList<Rental> temp = new ArrayList<Rental>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bookCode);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Rental r = new Rental();
+				r.setId(rs.getString("id"));
+				r.setCode(rs.getString("code"));
+				r.setReturnDate(rs.getDate("return_date"));
+
+				temp.add(r);
+			}
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return temp;
+>>>>>>> c3ab26791ef7cec3391a26e58c3c8e08c4a3d31c
 	}
 }

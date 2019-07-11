@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -24,8 +25,12 @@ public class AddBookView /* implements Initializable */ {
 
 	@FXML
 	private Button btnBack, btnAdd, btnFail, btnSucc;
-	
-	@FXML private Button okayBtn;	//반납하기 팝업창에서 확인 버튼
+
+	@FXML
+	private TextArea taCon;
+
+	@FXML
+	private Button okayBtn; // 반납하기 팝업창에서 확인 버튼
 
 	@FXML
 	public void duplicationControll() {
@@ -46,7 +51,7 @@ public class AddBookView /* implements Initializable */ {
 		Stage primaryStage = (Stage) btnFail.getScene().getWindow();
 		primaryStage.close();
 	}
-	
+
 	@FXML
 	public void succConfirm() {
 
@@ -75,7 +80,7 @@ public class AddBookView /* implements Initializable */ {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@FXML
 	public void succ() {
 		try {
@@ -93,23 +98,21 @@ public class AddBookView /* implements Initializable */ {
 
 	@FXML
 	public void addTest() {
-		
-		
+
 //		System.out.println(tfCode.getText());
-		if(tfCode.getText().isEmpty()|| tfBookName.getText().isEmpty() ||  tfAuthor.getText().isEmpty() ||
-				tfPublishingHouse.getText().isEmpty() || tfCategory.getText().isEmpty()) {
+		if (tfCode.getText().isEmpty() || tfBookName.getText().isEmpty() || tfAuthor.getText().isEmpty()
+				|| tfPublishingHouse.getText().isEmpty() || tfCategory.getText().isEmpty()
+				|| taCon.getText().isEmpty()) {
 			fail();
-		}else {
-			if(bookController.addBook(new BookModel(tfCode.getText(), tfBookName.getText(), tfAuthor.getText(),
-					tfPublishingHouse.getText(), tfCategory.getText()))) {
+		} else {
+			if (bookController.addBook(new BookModel(tfCode.getText(), tfBookName.getText(), tfAuthor.getText(),
+					tfPublishingHouse.getText(), tfCategory.getText(), taCon.getText()))) {
 				succ();
-			}else {
+			} else {
 				fail();
 			}
 		}
-			
-		
-		
+
 	}
 
 	@FXML
@@ -129,8 +132,7 @@ public class AddBookView /* implements Initializable */ {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 }
 
 //   @FXML
