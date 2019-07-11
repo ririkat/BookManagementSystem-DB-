@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.kh.bms.controller.RentalController;
-import application.kh.bms.model.dao.LoadSave;
+//import application.kh.bms.model.dao.LoadSave;
 import application.kh.bms.model.vo.BookModel;
 import application.kh.bms.model.vo.SelectedBook;
 import javafx.fxml.FXML;
@@ -41,7 +41,7 @@ public class DetailPageView implements Initializable {
 	private RentalController rentalController = new RentalController();
 
 	private ArrayList<BookModel> books = new ArrayList<BookModel>();
-	private LoadSave dao = LoadSave.getDao();
+//	private LoadSave dao = LoadSave.getDao();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

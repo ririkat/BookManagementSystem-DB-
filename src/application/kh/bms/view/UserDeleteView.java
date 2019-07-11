@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.kh.bms.controller.UserDeleteController;
-import application.kh.bms.model.dao.LoadSave;
+//import application.kh.bms.model.dao.LoadSave;
 import application.kh.bms.model.vo.BookModel;
 import application.kh.bms.model.vo.User;
 import javafx.fxml.FXML;
@@ -31,10 +31,10 @@ public class UserDeleteView implements Initializable {
 	@FXML
 	private Label checkIdLabel, checkPwLabel;
 
-	private LoadSave dao = LoadSave.getDao();
-	private ArrayList<BookModel> books = dao.loadBook();
+//	private LoadSave dao = LoadSave.getDao();
+//	private ArrayList<BookModel> books = dao.loadBook();
 	private User user = UserSearchView.getSelectUser();
-	private ArrayList<User> users = dao.loadUser();
+//	private ArrayList<User> users = dao.loadUser();
 	private UserDeleteController dc = new UserDeleteController();
 	private Popup popup;
 
@@ -46,7 +46,7 @@ public class UserDeleteView implements Initializable {
 
 		String inputId = checkId.getText();// 탈퇴유저확인 시 입력한 텍스트필드에서 받아온 아이디 값
 		String identifyPw = checkPw.getText();
-		ArrayList<User> users = dao.loadUser();
+//		ArrayList<User> users = dao.loadUser();
 
 		int check = dc.checkUser(inputId, identifyPw);
 		if (check == -1) {

@@ -9,7 +9,9 @@ import java.util.ResourceBundle;
 import application.kh.bms.controller.BookSearchController;
 import application.kh.bms.controller.RentalController;
 import application.kh.bms.model.dao.InformationManager;
-import application.kh.bms.model.dao.LoadSave;
+import application.kh.bms.model.service.BookModelService;
+import application.kh.bms.model.service.UserService;
+//import application.kh.bms.model.dao.LoadSave;
 import application.kh.bms.model.vo.BookModel;
 import application.kh.bms.model.vo.BookTable;
 import application.kh.bms.model.vo.SelectedBook;
@@ -83,6 +85,7 @@ public class MainSearchView implements Initializable {
 
 	private BookSearchController bookSearchController = new BookSearchController();
 	private List<BookTable> books = new ArrayList<BookTable>();
+	
 
 	// 테이블열선택
 	public int row = -1;
@@ -93,14 +96,16 @@ public class MainSearchView implements Initializable {
 	private String tfsel = ""; // 텍스트필드 저장용
 	private String combosel = ""; // 콤보박스 저장용
 
-	private LoadSave dao = LoadSave.getDao();
-	private ArrayList<BookModel> temp = dao.loadBook();
-	private ArrayList<User> temp2 = dao.loadUser();
-
+//	private LoadSave dao = LoadSave.getDao();
+	private BookModelService bs = new BookModelService();
+	private UserService us = new UserService();
+	private InformationManager im = InformationManager.getInformationManager();
+	private List<BookModel> temp = bs.selectAll();
+	private List<User> temp2 = us.selectAll();
 	// 전체조회 테이블용
 	public ObservableList<BookTable> bookList = FXCollections.observableArrayList();
 
-	private String userId = dao.getNowUser();
+	private String userId = im.getNowUser().getId();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -376,13 +381,13 @@ public class MainSearchView implements Initializable {
 
 //		btnNowRental.setDisable(true);
 
-		temp = dao.loadBook();
+		temp = bs.selectAll();
 		for (int i = 0; i < temp.size(); i++) {
 			if (temp.get(i).getCode().equals(model.getCode())) {
 				temp.get(i).setRental(true);
 			}
 		}
-		dao.saveBook(temp);
+//		dao.saveBook(temp);
 
 		bookList.clear();
 		books = bookSearchController.bookTableLoad();

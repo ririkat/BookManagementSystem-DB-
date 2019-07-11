@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.kh.bms.controller.BookUpdateController;
-import application.kh.bms.model.dao.LoadSave;
+//import application.kh.bms.model.dao.LoadSave;
 import application.kh.bms.model.vo.BookModel;
 import application.kh.bms.model.vo.BookTable;
 import application.kh.bms.model.vo.SelectedBook;
@@ -35,7 +35,7 @@ public class BookUpdateView implements Initializable {
    private Label lID,lblCode;
 
      
-    private LoadSave dao = LoadSave.getDao();
+//    private LoadSave dao = LoadSave.getDao();
    
    private BookTable book = AdminSearchView.getSelBook();
    public static BookTable selBook = new BookTable();

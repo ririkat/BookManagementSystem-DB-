@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 
 import application.kh.bms.controller.UserDeleteController;
 import application.kh.bms.controller.UserSearchController;
-import application.kh.bms.model.dao.LoadSave;
+//import application.kh.bms.model.dao.LoadSave;
 import application.kh.bms.model.vo.User;
 import application.kh.bms.model.vo.UserTable;
 import javafx.collections.FXCollections;
@@ -60,8 +60,8 @@ public class UserSearchView implements Initializable {
 			"phone", "adminCheck");
 
 	private ObservableList<UserTable> list = FXCollections.observableArrayList();
-	private LoadSave dao = LoadSave.getDao();
-	private ArrayList<User> temp = dao.loadUser();
+//	private LoadSave dao = LoadSave.getDao();
+//	private ArrayList<User> temp = dao.loadUser();
 	private static User selectUser;
 
 	public static User getSelectUser() {

@@ -1,14 +1,14 @@
 package application.kh.bms.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import application.kh.bms.model.dao.LoadSave;
 import application.kh.bms.model.service.UserService;
 import application.kh.bms.model.vo.User;
 
 public class RegisterController {
-	private LoadSave dao = LoadSave.getDao();
-	private ArrayList<User> temp = dao.loadUser();
+//	private LoadSave dao = LoadSave.getDao();
+//	private List<User> temp = new ArrayList<User>();
 	private UserService service = new UserService();
 
 	public boolean checkedId(String id) {

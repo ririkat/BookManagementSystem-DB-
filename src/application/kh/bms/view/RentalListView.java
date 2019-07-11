@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 
 import application.kh.bms.controller.BookSearchController;
 import application.kh.bms.controller.RentalController;
-import application.kh.bms.model.dao.LoadSave;
+//import application.kh.bms.model.dao.LoadSave;
 import application.kh.bms.model.vo.BookModel;
 import application.kh.bms.model.vo.RentalTable;
 import javafx.beans.value.ChangeListener;
@@ -44,7 +44,7 @@ public class RentalListView implements Initializable {
 	private BookSearchController bookSearchController = new BookSearchController();
 	private List<RentalTable> rentalBooks = new ArrayList<RentalTable>();
 	private RentalController rentalController = new RentalController();
-	private LoadSave dao = LoadSave.getDao();
+//	private LoadSave dao = LoadSave.getDao();
 	private List<BookModel> books = new ArrayList<BookModel>();
 
 	@FXML

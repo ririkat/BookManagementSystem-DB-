@@ -1,21 +1,23 @@
 package application.kh.bms.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
-import application.kh.bms.model.dao.LoadSave;
+import application.kh.bms.model.service.BookModelService;
+import application.kh.bms.model.service.UserService;
 import application.kh.bms.model.vo.User;
 
 public class RentalController {
    
    private String userId = "";
-   private LoadSave dao = LoadSave.getDao();
-   private ArrayList<User> users = new ArrayList<User>();
+//   private LoadSave dao = LoadSave.getDao();
+   private BookModelService bs = new BookModelService();
+   private UserService us = new UserService();
+   private List<User> users = new ArrayList<User>();
    
    private HashMap<String, GregorianCalendar> rentalBook = new HashMap<String, GregorianCalendar>();
    

@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.kh.bms.controller.UserUpdateController;
-import application.kh.bms.model.dao.LoadSave;
+//import application.kh.bms.model.dao.LoadSave;
 import application.kh.bms.model.vo.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -48,7 +48,7 @@ public class UserUpdateView implements Initializable {
 	private Label lID;
 	private ObservableList<String> list = FXCollections.observableArrayList("남자", "여자");
 
-	private LoadSave dao = LoadSave.getDao();
+//	private LoadSave dao = LoadSave.getDao();
 
 	private User user = UserSearchView.getSelectUser();
 
@@ -105,8 +105,8 @@ public class UserUpdateView implements Initializable {
 		backMove();
 	}
 
-	@FXML
-	private void comboChanged(ActionEvent e) {
-	}
+//	@FXML
+//	private void comboChanged(ActionEvent e) {
+//	}
 
 }

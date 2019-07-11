@@ -4,7 +4,7 @@ package application.kh.bms.view;
 import java.io.IOException;
 
 import application.kh.bms.controller.LoginController;
-import application.kh.bms.model.dao.LoadSave;
+//import application.kh.bms.model.dao.LoadSave;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class LoginView{
-	private LoadSave dao = LoadSave.getDao();
+//	private LoadSave dao = LoadSave.getDao();
 	
 	@FXML
 	private TextField id;
