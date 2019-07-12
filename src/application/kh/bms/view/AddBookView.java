@@ -27,7 +27,7 @@ public class AddBookView /* implements Initializable */ {
 	private Button btnBack, btnAdd, btnFail, btnSucc;
 
 	@FXML
-	private TextArea taCon= new TextArea();
+	private TextArea taCon = new TextArea();
 
 	@FXML
 	private Button okayBtn; // 반납하기 팝업창에서 확인 버튼
@@ -108,6 +108,7 @@ public class AddBookView /* implements Initializable */ {
 			if (bookController.addBook(new BookModel(tfCode.getText(), tfBookName.getText(), tfAuthor.getText(),
 					tfPublishingHouse.getText(), tfCategory.getText(), taCon.getText()))) {
 				succ();
+				resetInput();
 			} else {
 				fail();
 			}
@@ -131,6 +132,17 @@ public class AddBookView /* implements Initializable */ {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void resetInput() {
+		// private TextField tfBookName, tfAuthor, tfCode, tfPublishingHouse,
+		// tfCategory;
+		tfBookName.setText("");
+		tfAuthor.setText("");
+		tfCategory.setText("");
+		tfCode.setText("");
+		tfPublishingHouse.setText("");
+		taCon.setText("");
 	}
 
 }

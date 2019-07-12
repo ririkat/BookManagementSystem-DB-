@@ -49,7 +49,6 @@ public class RentalDao {
 		return temp;
 	}
 
-
 	public int bookRentalUpdate(Connection conn, String ch, String code) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -86,32 +85,50 @@ public class RentalDao {
 		return result;
 	}
 
-	public ArrayList<Rental> selectBookCode(Connection conn, String bookCode) {
+	public Rental selectBookCode(Connection conn, String id, String bookCode) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectBookCode");
-		ArrayList<Rental> temp = new ArrayList<Rental>();
+		Rental r = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, bookCode);
+			pstmt.setString(1, id);
+			pstmt.setString(2, bookCode);
 
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Rental r = new Rental();
+			
+			if(rs.next()){
+				r = new Rental();
 				r.setId(rs.getString("id"));
 				r.setCode(rs.getString("code"));
 				r.setReturnDate(rs.getDate("return_date"));
-
-				temp.add(r);
 			}
-
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
 		}
-		return temp;
+		return r;
 
+	}
+
+	public int returnDelete(Connection conn, String id, String code) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("returnDelete");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, code);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 }

@@ -17,9 +17,9 @@ public class RentalService {
 		return temp;
 	}
 
-	public ArrayList<Rental> selectBookCode(String bookCode) {
+	public Rental selectBookCode(String id, String bookCode) {
 		Connection conn = JDBCTemplate.getConnection();
-		ArrayList<Rental> temp = dao.selectBookCode(conn, bookCode);
+		Rental temp = dao.selectBookCode(conn,id, bookCode);
 		JDBCTemplate.close(conn);
 		return temp;
 	}
@@ -44,5 +44,15 @@ public class RentalService {
 			JDBCTemplate.rollback(conn);
 		}
 		
+	}
+	
+	public void returnDelete(String id, String code) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.returnDelete(conn, id,code);
+		if(result==1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
 	}
 }

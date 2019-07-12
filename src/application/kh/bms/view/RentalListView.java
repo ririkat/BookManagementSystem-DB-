@@ -120,7 +120,6 @@ public class RentalListView implements Initializable {
 
 		else if (result == 0) { // 정상반납
 			if(result2==1) {
-//				System.out.println("정상반납");
 				succ();
 			}else {
 				fail();
@@ -128,23 +127,12 @@ public class RentalListView implements Initializable {
 		}
 		// ---------------------------------------------------------------------
 		else { // 에러
-//			System.out.println("반납에러!");
 			fail();
 
 		}
 
 		returnBookBtn.setDisable(true);
 		
-//		rentalController.bookRentalUpdate('0');
-
-//		books = dao.loadBook();
-//		for (int i = 0; i < books.size(); i++) {
-//			if (books.get(i).getCode().equals(model.getCode())) {
-//				books.get(i).setRental(false); // 북리스트에서 상태변경
-//				break;
-//			}
-//		}
-//		dao.saveBook(books);
 
 		// 테이블 세팅
 		bookList.clear();

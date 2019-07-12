@@ -60,7 +60,7 @@
             <Font name="Malgun Gothic Bold" size="24.0" />
          </font>
       </Text>
-      <TextArea id="taCon" layoutX="167.0" layoutY="402.0" prefHeight="119.0" prefWidth="329.0" />
+      <TextArea fx:id="taCon" layoutX="167.0" layoutY="402.0" prefHeight="119.0" prefWidth="329.0" />
       <Text fill="GREY" layoutX="95.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="줄거리" textAlignment="CENTER" wrappingWidth="56.12109375">
          <font>
             <Font name="Malgun Gothic Bold" size="14.0" />

@@ -133,7 +133,6 @@ public class MainSearchView implements Initializable {
 		}
 		tableView.setItems(bookList);
 
-		// lookDetailBtn.setDisable(true);
 
 		comboBox.setItems(comboList);
 
@@ -144,10 +143,12 @@ public class MainSearchView implements Initializable {
 					BookTable newValue) {
 				lookDetailBtn.setDisable(false);
 				model = tableView.getSelectionModel().getSelectedItem();
-
-				// System.out.println("선택된 Item의 Index" +
-				// tableView.getSelectionModel().getSelectedIndex());
-				// System.out.println("선택된 행의 도서코드 : " + model.getCode());
+				
+				if(model.getRental().getValue()) {
+					btnNowRental.setDisable(true);
+				}else {
+					btnNowRental.setDisable(false);
+				}
 			}
 		});
 
@@ -252,16 +253,6 @@ public class MainSearchView implements Initializable {
 	public void changeToDetailPage() {
 
 		try {
-//			System.out.println("받아왔니? : " + model.getCode());
-//			// detailPageView.loadSelectedRow(model);
-//			SelectedBook.selBook.setBookName(model.getBookName());
-//			SelectedBook.selBook.setAuthor(model.getAuthor());
-//			SelectedBook.selBook.setPublishingHouse(model.getPublishingHouse());
-//			SelectedBook.selBook.setCategory(model.getCategory());
-//			SelectedBook.selBook.setRental(model.getRental().get());
-//			SelectedBook.selBook.setCode(model.getCode());
-////			SelectedBook.selBook.setContent(model.getContent().toString());
-//			System.out.println("들어갔니? : " + SelectedBook.selBook.getCode());
 			
 			InformationManager.getInformationManager().setNowBook(bs.oneBookSelect( model.getCode()));
 
@@ -381,15 +372,9 @@ public class MainSearchView implements Initializable {
 //		// ---------------------------------------------
 		rentalController.addRetalBook(model.getCode());
 
-//		btnNowRental.setDisable(true);
+		
+		rentalController.bookRentalUpdate("1",model.getCode());
 
-		temp = bs.selectAll();
-		for (int i = 0; i < temp.size(); i++) {
-			if (temp.get(i).getCode().equals(model.getCode())) {
-				temp.get(i).setRental(true);
-			}
-		}
-//		dao.saveBook(temp);
 
 		bookList.clear();
 		books = bookSearchController.bookTableLoad();

@@ -47,7 +47,6 @@ public class DetailPageView implements Initializable {
 	private InformationManager im = InformationManager.getInformationManager();
 
 	private ArrayList<BookModel> books = new ArrayList<BookModel>();
-//	private LoadSave dao = LoadSave.getDao();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -58,7 +57,6 @@ public class DetailPageView implements Initializable {
 		pubLab.setText(im.getNowBook().getPublishingHouse());
 		categoryLab.setText(im.getNowBook().getCategory());
 		taCon.setText(im.getNowBook().getContent());
-//		System.out.println("넘겨받은 도서코드 : " + im.getNowBook().getCode());
 
 		if (im.getNowBook().isRental() == false) {
 			rentalLab.setText("대여 가능");
@@ -100,13 +98,6 @@ public class DetailPageView implements Initializable {
 		
 		rentalController.bookRentalUpdate("1",im.getNowBook().getCode());
 
-//		books = dao.loadBook();
-//		for (int i = 0; i < books.size(); i++) {
-//			if (books.get(i).getCode().equals(SelectedBook.selBook.getCode())) {
-//				books.get(i).setRental(true);
-//			}
-//		}
-//		dao.saveBook(books);
 		// ---------------------------------------------
 		backToSearchView();
 		// ---------------------------------------------

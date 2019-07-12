@@ -3,6 +3,7 @@ package application.kh.bms.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import application.kh.bms.model.dao.InformationManager;
 import application.kh.bms.model.service.BookModelService;
 import application.kh.bms.model.service.RentalService;
 import application.kh.bms.model.vo.BookModel;
@@ -17,6 +18,7 @@ public class BookController {
 	List<BookModel> realBooks = null;
 	private BookModelService bs = new BookModelService();
 	private RentalService rs = new RentalService();
+	private InformationManager im = InformationManager.getInformationManager();
 
 	public List<BookModel> getBooks() {
 		books = bs.selectAll();
@@ -39,7 +41,6 @@ public class BookController {
 	}
 
 	public boolean addBook(BookModel newBook) {
-//		books = dao.loadBook();
 		boolean isSucc = false;
 		if (checkCode(newBook.getCode())) {
 			int result = bs.addBook(newBook);
@@ -55,8 +56,9 @@ public class BookController {
 
 	public void remove(String bookCode) {
 		realBooks = bs.selectAll();
-		ArrayList<Rental> temp = rs.selectBookCode(bookCode);
-		if (temp.size() == 0) {
+		String userId = im.getNowUser().getId();
+		Rental temp = rs.selectBookCode(userId,bookCode);
+		if (temp==null) {
 			bs.deleteBook(bookCode);
 		}
 	}

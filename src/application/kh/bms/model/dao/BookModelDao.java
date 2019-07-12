@@ -41,14 +41,19 @@ public class BookModelDao {
 				b.setAuthor(rs.getString("author"));
 				b.setCategory(rs.getString("category"));
 				b.setPublisgingHouse(rs.getString("publishinghouse"));
-				b.setRental(Boolean.valueOf(rs.getString("rental")));
+				boolean rental = false;
+				switch(rs.getString("rental")) {
+				case "1" : rental = true; break;
+				case "0" : rental = false; break;
+				}
+				b.setRental(rental);
 				b.setContent(rs.getString("content"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-//			JDBCTemplate.close(rs);
-//			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
 		}
 		return b;
 	}
@@ -69,7 +74,12 @@ public class BookModelDao {
 				b.setAuthor(rs.getString("author"));
 				b.setCategory(rs.getString("category"));
 				b.setPublisgingHouse(rs.getString("publishinghouse"));
-				b.setRental(Boolean.valueOf(rs.getString("rental")));
+				boolean rental = false;
+				switch(rs.getString("rental")) {
+				case "1" : rental = true; break;
+				case "0" : rental = false; break;
+				}
+				b.setRental(rental);
 				b.setContent(rs.getString("content"));
 
 				list.add(b);
@@ -77,8 +87,8 @@ public class BookModelDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-//			JDBCTemplate.close(rs);
-//			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
 		}
 		return list;
 	}
@@ -99,7 +109,7 @@ public class BookModelDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-//			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(pstmt);
 		}
 		return result;
 	}
@@ -115,7 +125,7 @@ public class BookModelDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-//			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(pstmt);
 		}
 		return result;
 	}
@@ -137,7 +147,7 @@ public class BookModelDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-//			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(pstmt);
 		}
 		return result;
 	}
@@ -166,7 +176,11 @@ public class BookModelDao {
 				b.setAuthor(rs.getString("author"));
 				b.setCategory(rs.getString("category"));
 				b.setPublisgingHouse(rs.getString("publishinghouse"));
-				b.setRental(Boolean.valueOf(rs.getString("rental")));
+				boolean rental = false;
+				switch(rs.getString("rental")) {
+				case "1" : rental = true; break;
+				case "0" : rental = false; break;
+				}
 				b.setContent(rs.getString("content"));
 
 				list.add(b);
@@ -174,8 +188,8 @@ public class BookModelDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-//			JDBCTemplate.close(rs);
-//			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
 		}
 		return list;
 	}
