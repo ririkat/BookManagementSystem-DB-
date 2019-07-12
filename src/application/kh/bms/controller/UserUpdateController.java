@@ -9,7 +9,6 @@ import application.kh.bms.model.vo.User;
 public class UserUpdateController {
 	private UserService service = new UserService();
 
-	// ArrayList를 이용하여 수정된 유저의 정보를 파라미터로 받아와 해당 userNo에 Set 함
 	public void updateUser(String id, String name, String addr, String gender, String phone) {
 		User temp = new User();
 		temp.setId(id);
@@ -21,7 +20,6 @@ public class UserUpdateController {
 		service.updateUser(temp);
 	}
 
-	// 설정한 PW 의 길이 8~12자 체크
 	public boolean pwCheck(String pw) {
 		if (pw.length() >= 8 && pw.length() <= 12) {
 			return true;

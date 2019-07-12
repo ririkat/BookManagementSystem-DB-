@@ -68,7 +68,6 @@ public class DetailPageView implements Initializable {
 
 	}
 
-	// 뒤로가기 버튼 메소드
 	@FXML
 	public void backToSearchView() {
 		try {
@@ -83,24 +82,20 @@ public class DetailPageView implements Initializable {
 			Stage primaryStage = (Stage) backBtn.getScene().getWindow();
 			primaryStage.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	// 대여하기 버튼 메소드
 	@FXML
 	public void decideRental() {
 		rentalController.addRetalBook(im.getNowBook().getCode());
 
 		rentalLab.setText("대여중");
 		rentalBtn.setDisable(true);
-		
-		rentalController.bookRentalUpdate("1",im.getNowBook().getCode());
 
-		// ---------------------------------------------
+		rentalController.bookRentalUpdate("1", im.getNowBook().getCode());
+
 		backToSearchView();
-		// ---------------------------------------------
 	}
 
 }

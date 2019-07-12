@@ -19,14 +19,12 @@ public class UpdateSuccessView {
 	private Parent root;
 	private Stage subStage = new Stage();
 
-	// btnAgree 클릭시 해당 컴포넌트의 씬을 가져와 stage에 넣고 해당 stage 닫기
 	@FXML
 	private void backMove() {
 		Stage stage = (Stage) btnAgree.getScene().getWindow();
 		stage.close();
 	}
 
-	// UserUpdateView 에서 확인창을 띄우기 위해 생성된 메소드
 	@FXML
 	public void showUpdateSuccess() {
 		try {

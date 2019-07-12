@@ -44,15 +44,14 @@ public class RentalListView implements Initializable {
 	private BookSearchController bookSearchController = new BookSearchController();
 	private List<RentalTable> rentalBooks = new ArrayList<RentalTable>();
 	private RentalController rentalController = new RentalController();
-//	private LoadSave dao = LoadSave.getDao();
 	private List<BookModel> books = new ArrayList<BookModel>();
 
 	@FXML
-	private Button backBtn; // 뒤로가기 버튼
+	private Button backBtn;
 	@FXML
-	private Button returnBookBtn = new Button(); // 반납하기 버튼
+	private Button returnBookBtn = new Button();
 	@FXML
-	private Button okayBtn; // 반납하기 팝업창에서 확인 버튼
+	private Button okayBtn;
 
 	static RentalTable model = new RentalTable();
 
@@ -60,7 +59,7 @@ public class RentalListView implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// 테이블 세팅
+
 		codeCol.setCellValueFactory(new PropertyValueFactory<RentalTable, String>("code"));
 		nameCol.setCellValueFactory(new PropertyValueFactory<RentalTable, String>("bookName"));
 		authorCol.setCellValueFactory(new PropertyValueFactory<RentalTable, String>("author"));
@@ -88,7 +87,6 @@ public class RentalListView implements Initializable {
 
 	}
 
-	// 뒤로가기 버튼 메소드
 	@FXML
 	public void backToSearchView() {
 		try {
@@ -107,34 +105,30 @@ public class RentalListView implements Initializable {
 		}
 	}
 
-	// 반납하기 버튼 메소드
 	@FXML
 	public void returnBook() {
-		int result = rentalController.delRentalBook(model.getCode()); // 유저에서 지우기
+		int result = rentalController.delRentalBook(model.getCode());
 		int result2 = rentalController.bookRentalUpdate("0", model.getCode());
-		// ---------------------------------------------------------------------
-		if (result==1) { // 연체
+		if (result == 1) {
 			System.out.println("연체됐음");
 			fail();
 		}
 
-		else if (result == 0) { // 정상반납
-			if(result2==1) {
+		else if (result == 0) {
+			if (result2 == 1) {
 				succ();
-			}else {
+			} else {
 				fail();
 			}
 		}
-		// ---------------------------------------------------------------------
-		else { // 에러
+
+		else {
 			fail();
 
 		}
 
 		returnBookBtn.setDisable(true);
-		
 
-		// 테이블 세팅
 		bookList.clear();
 		rentalBooks = bookSearchController.rentalTableLoad();
 		for (int i = 0; i < rentalBooks.size(); i++) {
@@ -144,9 +138,6 @@ public class RentalListView implements Initializable {
 
 	}
 
-//	반납하기 팝업창
-//	확인버튼 누르면 꺼지기
-//---------------------------------------------------------------------
 	@FXML
 	public void succConfirm() {
 		Stage primaryStage = (Stage) okayBtn.getScene().getWindow();
@@ -188,5 +179,4 @@ public class RentalListView implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	// ---------------------------------------------------------------------
 }

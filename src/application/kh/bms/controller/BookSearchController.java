@@ -42,23 +42,23 @@ public class BookSearchController {
 		nowUser = im.getNowUser();
 		temp = bs.selectAll();
 		temp3.clear();
-		
+
 		ArrayList<Rental> list = rs.selectAll(nowUser.getId());
-		
-		for(int i=0; i<list.size(); i++) {
-			for(int j=0; j<temp.size(); j++) {
-				if(list.get(i).getCode().equals(temp.get(j).getCode())) {
+
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = 0; j < temp.size(); j++) {
+				if (list.get(i).getCode().equals(temp.get(j).getCode())) {
 					RentalTable bt = new RentalTable(temp.get(j).getCode(), temp.get(j).getBookName(),
 							temp.get(j).getAuthor(), temp.get(j).getPublishingHouse(), temp.get(j).getCategory());
 					temp3.add(bt);
 				}
 			}
-			
+
 		}
 
 		return temp3;
 	}
-	
+
 	public BookModel loadBook(String code) {
 		BookModel b = bs.oneBookSelect(code);
 		return b;

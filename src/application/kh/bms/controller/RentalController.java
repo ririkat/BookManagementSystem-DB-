@@ -25,7 +25,6 @@ public class RentalController {
 	private List<Rental> rList = new ArrayList<Rental>();
 	private List<BookModel> bList = new ArrayList<BookModel>();
 
-	// 대여도서 추가하기
 	public void addRetalBook(String bookCode) {
 
 		userId = is.getNowUser().getId(); // 현재 유저
@@ -35,7 +34,6 @@ public class RentalController {
 
 	}
 
-	// 대여도서 반납하기
 	public int delRentalBook(String bookCode) {
 		System.out.println("딜리트렌탈북 메소드 실행");
 
@@ -59,7 +57,6 @@ public class RentalController {
 		}
 	}
 
-	// 북객체의 rental 상태 변경
 	public int bookRentalUpdate(String state, String code) {
 		int result = rs.bookRentalUpdate(state, code);
 		return result;

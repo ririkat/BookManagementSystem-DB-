@@ -23,105 +23,85 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class BookUpdateView implements Initializable {
-   private BookUpdateController bookUpdateController = new BookUpdateController();
-   private ArrayList<BookModel> books = new ArrayList<BookModel>();
-   private InformationManager im= InformationManager.getInformationManager();	
+	private BookUpdateController bookUpdateController = new BookUpdateController();
+	private ArrayList<BookModel> books = new ArrayList<BookModel>();
+	private InformationManager im = InformationManager.getInformationManager();
 
-   @FXML
-   private Button btnUpdate, btnBack;
+	@FXML
+	private Button btnUpdate, btnBack;
 
-   @FXML
-   private TextField tfName, tfCategory, tfAuthor, tfCode, tfPublisher;
-   
-   @FXML
-   private TextArea taCon=new TextArea();
-   
+	@FXML
+	private TextField tfName, tfCategory, tfAuthor, tfCode, tfPublisher;
 
-   @FXML
-   private Label lID,lblCode;
+	@FXML
+	private TextArea taCon = new TextArea();
 
-     
-//    private LoadSave dao = LoadSave.getDao();
-   
-   private BookTable book = AdminSearchView.getSelBook();
-   public static BookTable selBook = new BookTable();
-   
+	@FXML
+	private Label lID, lblCode;
 
-   @FXML
-   public void resetTextfield() {
-      tfName.setText("");
-      tfCategory.setText("");
-      tfAuthor.setText("");
-      tfPublisher.setText("");
-      taCon.setText("");
-   
+	private BookTable book = AdminSearchView.getSelBook();
+	public static BookTable selBook = new BookTable();
 
-   }
+	@FXML
+	public void resetTextfield() {
+		tfName.setText("");
+		tfCategory.setText("");
+		tfAuthor.setText("");
+		tfPublisher.setText("");
+		taCon.setText("");
 
-    public void moveBack() {
-         try {
-            Stage newStage = new Stage();
-            Parent root = FXMLLoader
-                  .load(getClass().getClassLoader().getResource("application/kh/bms/view/AdminSearch.fxml"));
-            Scene scene = new Scene(root);
-            newStage.setScene(scene);
-            newStage.setTitle("档辑包府");
-            newStage.show();
+	}
 
-            Stage primaryStage = (Stage) btnBack.getScene().getWindow();
-             primaryStage.close();
-         }
-         catch (IOException e) {
-            e.printStackTrace();
-         }
-      }
-   
+	public void moveBack() {
+		try {
+			Stage newStage = new Stage();
+			Parent root = FXMLLoader
+					.load(getClass().getClassLoader().getResource("application/kh/bms/view/AdminSearch.fxml"));
+			Scene scene = new Scene(root);
+			newStage.setScene(scene);
+			newStage.setTitle("档辑包府");
+			newStage.show();
 
+			Stage primaryStage = (Stage) btnBack.getScene().getWindow();
+			primaryStage.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-   
-   @FXML
-   private void updateBook() {
-      
-      bookUpdateController.updateBook(lblCode.getText(), tfName.getText(),tfCategory.getText(), tfAuthor.getText(),tfPublisher.getText(), taCon.getText() );
-      
-      try {
-          Stage newStage = new Stage();
-          Parent root = FXMLLoader
-                .load(getClass().getClassLoader().getResource("application/kh/bms/view/AdminSearch.fxml"));
-          Scene scene = new Scene(root);
-          newStage.setScene(scene);
-          newStage.setTitle("档辑包府");
-          newStage.show();
+	@FXML
+	private void updateBook() {
 
-          Stage primaryStage = (Stage) btnBack.getScene().getWindow();
-           primaryStage.close();
-       }
-       catch (IOException e) {
-          e.printStackTrace();
-       }
+		bookUpdateController.updateBook(lblCode.getText(), tfName.getText(), tfCategory.getText(), tfAuthor.getText(),
+				tfPublisher.getText(), taCon.getText());
 
-   }
-   
-   @Override
-   public void initialize(URL location, ResourceBundle resources) {
-      
-      lblCode.setText(im.getNowBook().getCode());
-      tfName.setText(im.getNowBook().getBookName());
-      tfCategory.setText(im.getNowBook().getCategory());
-      tfAuthor.setText(im.getNowBook().getAuthor());
-      tfPublisher.setText(im.getNowBook().getPublishingHouse());
-      taCon.setText(im.getNowBook().getContent());
-      
-   }
-   
+		try {
+			Stage newStage = new Stage();
+			Parent root = FXMLLoader
+					.load(getClass().getClassLoader().getResource("application/kh/bms/view/AdminSearch.fxml"));
+			Scene scene = new Scene(root);
+			newStage.setScene(scene);
+			newStage.setTitle("档辑包府");
+			newStage.show();
+
+			Stage primaryStage = (Stage) btnBack.getScene().getWindow();
+			primaryStage.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+
+		lblCode.setText(im.getNowBook().getCode());
+		tfName.setText(im.getNowBook().getBookName());
+		tfCategory.setText(im.getNowBook().getCategory());
+		tfAuthor.setText(im.getNowBook().getAuthor());
+		tfPublisher.setText(im.getNowBook().getPublishingHouse());
+		taCon.setText(im.getNowBook().getContent());
+
+	}
 
 }
-
-
-
-
-
-
-
-
-

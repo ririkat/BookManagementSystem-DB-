@@ -52,18 +52,14 @@ public class RegisterView implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		gender.setItems(list);
-		// --------------------------------------------------------
 		gender.setPromptText("성별");
-		// --------------------------------------------------------
 	}
 
 	@FXML
 	public void checkedId() {
 		String regId = id.getText();
 		RegisterController rc = new RegisterController();
-		// --------------------------------------------------------
 		if (rc.idEnglishCheck(regId)) {
-			// --------------------------------------------------------
 			boolean idCheck = rc.checkedId(regId);
 			if (idCheck == false) {
 				idLabel.setStyle("-fx-text-fill: red");
@@ -72,13 +68,10 @@ public class RegisterView implements Initializable {
 				idLabel.setStyle("-fx-text-fill: green");
 				idLabel.setText("사용가능한 아이디입니다.");
 			}
-			// --------------------------------------------------------
 		} else {
 			idLabel.setStyle("-fx-text-fill: red");
 			idLabel.setText("아이디는 영어 대소문자만 가능합니다.");
 		}
-		// --------------------------------------------------------
-
 	}
 
 	@FXML
@@ -89,7 +82,6 @@ public class RegisterView implements Initializable {
 		String regName = name.getText();
 		String regGender = gender.getValue();
 		String regAddr = addr.getText();
-//		String regEmail = 
 		String regphone = phone.getText();
 		String regAdmin = adminNum.getText();
 
@@ -112,9 +104,7 @@ public class RegisterView implements Initializable {
 			rMessage.setStyle("-fx-text-fill: green");
 			rMessage.setText("회원가입 완료.");
 			rc.addUser(regId, regPw, regName, regGender, regAddr, regphone, adChk);
-			// --------------------------------------------------------
 			cancel();
-			// --------------------------------------------------------
 		}
 	}
 
@@ -133,7 +123,6 @@ public class RegisterView implements Initializable {
 			primaryStage.close();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

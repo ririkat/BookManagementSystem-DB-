@@ -27,18 +27,14 @@ public class UserEnrollView implements Initializable {
 	@FXML
 	private TextField id, pw, name, addr, phone, adCheck;
 
-	// 콤보박스
-
 	@FXML
 	private ComboBox<String> comGender;
 
 	@FXML
 	private Label checkIdLabel, checkPwLabel, checkNullLabel;
-//
 	@FXML
 	private Button enrollBtn, backBtn;
 
-	// 추가버튼
 	@FXML
 	private void enroll() {
 		String memId = id.getText();
@@ -75,7 +71,6 @@ public class UserEnrollView implements Initializable {
 				Stage primaryStage = (Stage) enrollBtn.getScene().getWindow();
 				primaryStage.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -97,7 +92,6 @@ public class UserEnrollView implements Initializable {
 			Stage primaryStage = (Stage) backBtn.getScene().getWindow();
 			primaryStage.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -109,11 +103,8 @@ public class UserEnrollView implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
 		comGender.setItems(list);
-		// --------------------------------------------------
 		comGender.setPromptText("성별");
-		// --------------------------------------------------
 
 	}
 

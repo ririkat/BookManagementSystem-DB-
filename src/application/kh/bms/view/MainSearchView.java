@@ -86,22 +86,18 @@ public class MainSearchView implements Initializable {
 	private BookSearchController bookSearchController = new BookSearchController();
 	private List<BookTable> books = new ArrayList<BookTable>();
 
-	// 테이블열선택
 	public int row = -1;
 
-	// 콤보박스 list
 	private ObservableList<String> comboList = FXCollections.observableArrayList("도서명", "저자", "출판사", "장르");
 
 	private String tfsel = ""; // 텍스트필드 저장용
 	private String combosel = ""; // 콤보박스 저장용
 
-//	private LoadSave dao = LoadSave.getDao();
 	private BookModelService bs = new BookModelService();
 	private UserService us = new UserService();
 	private InformationManager im = InformationManager.getInformationManager();
 	private List<BookModel> temp = bs.selectAll();
 	private List<User> temp2 = us.selectAll();
-	// 전체조회 테이블용
 	public ObservableList<BookTable> bookList = FXCollections.observableArrayList();
 
 	private String userId = im.getNowUser().getId();
@@ -112,7 +108,6 @@ public class MainSearchView implements Initializable {
 		btnGoAdminMain.setVisible(false);
 
 		if (InformationManager.getInformationManager().getNowUser().isAdminCheck()) {
-			// 관리자
 			btnGoUserSearch.setVisible(true);
 			btnGoAdminMain.setVisible(true);
 
@@ -133,7 +128,6 @@ public class MainSearchView implements Initializable {
 		}
 		tableView.setItems(bookList);
 
-
 		comboBox.setItems(comboList);
 
 		lookDetailBtn.setDisable(true);
@@ -143,10 +137,10 @@ public class MainSearchView implements Initializable {
 					BookTable newValue) {
 				lookDetailBtn.setDisable(false);
 				model = tableView.getSelectionModel().getSelectedItem();
-				
-				if(model.getRental().getValue()) {
+
+				if (model.getRental().getValue()) {
 					btnNowRental.setDisable(true);
-				}else {
+				} else {
 					btnNowRental.setDisable(false);
 				}
 			}
@@ -154,7 +148,6 @@ public class MainSearchView implements Initializable {
 
 	}
 
-	// 전체보기 버튼 클릭 액션 메소드
 	public void viewAll() {
 
 		bookList.clear();
@@ -176,7 +169,6 @@ public class MainSearchView implements Initializable {
 
 	}
 
-	// 조회버튼 클릭 메소드
 	public void selectSearch() {
 		ArrayList<BookTable> tempBooks = new ArrayList<BookTable>();
 		tfsel = tfWord.getText();
@@ -227,7 +219,6 @@ public class MainSearchView implements Initializable {
 		}
 	}
 
-	// 대여목록 클릭 메소드
 	@FXML
 	public void changeToRentalList() {
 		try {
@@ -243,18 +234,16 @@ public class MainSearchView implements Initializable {
 			primaryStage.close();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	// 상세보기 버튼 클릭 메소드
 	@FXML
 	public void changeToDetailPage() {
 
 		try {
-			
-			InformationManager.getInformationManager().setNowBook(bs.oneBookSelect( model.getCode()));
+
+			InformationManager.getInformationManager().setNowBook(bs.oneBookSelect(model.getCode()));
 
 			Stage newStage = new Stage();
 			Parent root = FXMLLoader
@@ -268,14 +257,11 @@ public class MainSearchView implements Initializable {
 			primaryStage.close();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
-	// 회원관리 버튼 클릭 메소드
-	// btnGoUserSearch
 	@FXML
 	public void GoUserSearch() {
 
@@ -292,13 +278,11 @@ public class MainSearchView implements Initializable {
 			primaryStage.close();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
-	// 도서관리 버튼 클릭 메소드
 	@FXML
 	public void GoAdminMain() {
 
@@ -315,13 +299,11 @@ public class MainSearchView implements Initializable {
 			primaryStage.close();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
-	// 회원탈퇴 버튼 클릭 메소드
 	@FXML
 	public void UserDelete() {
 		try {
@@ -337,12 +319,10 @@ public class MainSearchView implements Initializable {
 			primaryStage.close();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	// 뒤로가기 버튼 클릭 메소드
 	@FXML
 	public void GoLogin() {
 
@@ -359,7 +339,6 @@ public class MainSearchView implements Initializable {
 			primaryStage.close();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -369,12 +348,9 @@ public class MainSearchView implements Initializable {
 	public void nowRental() {
 		System.out.println("바로대여되나?");
 		System.out.println(model.getCode());
-//		// ---------------------------------------------
 		rentalController.addRetalBook(model.getCode());
 
-		
-		rentalController.bookRentalUpdate("1",model.getCode());
-
+		rentalController.bookRentalUpdate("1", model.getCode());
 
 		bookList.clear();
 		books = bookSearchController.bookTableLoad();
@@ -382,8 +358,6 @@ public class MainSearchView implements Initializable {
 			bookList.add(books.get(i));
 		}
 		tableView.setItems(bookList);
-//		// ---------------------------------------------
-//		
 
 	}
 

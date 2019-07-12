@@ -29,7 +29,6 @@ import javafx.stage.Stage;
 public class UserSearchView implements Initializable {
 	@FXML
 	private TableView<UserTable> table;
-
 	@FXML
 	private TableColumn<UserTable, String> id;
 	@FXML
@@ -60,8 +59,6 @@ public class UserSearchView implements Initializable {
 			"phone", "adminCheck");
 
 	private ObservableList<UserTable> list = FXCollections.observableArrayList();
-//	private LoadSave dao = LoadSave.getDao();
-//	private ArrayList<User> temp = dao.loadUser();
 	private static User selectUser;
 
 	public static User getSelectUser() {
@@ -95,7 +92,6 @@ public class UserSearchView implements Initializable {
 
 	@FXML
 	private void search() {
-		// ArrayList<UserTable> tempUsers = userSearchController.userTableLoad();
 		ArrayList<UserTable> tempUsers = new ArrayList<UserTable>();
 		switch (searchType.getValue().toString()) {
 		case "ID":

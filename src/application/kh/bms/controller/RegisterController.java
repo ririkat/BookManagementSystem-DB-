@@ -7,14 +7,12 @@ import application.kh.bms.model.service.UserService;
 import application.kh.bms.model.vo.User;
 
 public class RegisterController {
-//	private LoadSave dao = LoadSave.getDao();
-//	private List<User> temp = new ArrayList<User>();
 	private UserService service = new UserService();
 
 	public boolean checkedId(String id) {
 		boolean check = true;
 		User temp = service.oneUserSelect(id);
-		if (temp!=null) {
+		if (temp != null) {
 			check = false;
 		}
 		return check;
@@ -34,11 +32,8 @@ public class RegisterController {
 
 	public boolean nullCheck(String id, String pw, String pw2, String name, String gender, String phone, String addr) {
 		boolean bool = true;
-		// --------------------------------------------------------
 		if ((id.isEmpty()) || (pw.isEmpty()) || (pw2.isEmpty()) || (name.isEmpty()) || (gender.equals("성별"))
-				|| (addr.isEmpty()) || (phone.isEmpty()))
-		// --------------------------------------------------------gender.equals 성별로 바꿈
-		{
+				|| (addr.isEmpty()) || (phone.isEmpty())) {
 			bool = false;
 		}
 		return bool;
@@ -59,7 +54,6 @@ public class RegisterController {
 		service.addUser(temp);
 	}
 
-	// ------------------------------------------------------------
 	public boolean idEnglishCheck(String inputID) {
 		boolean isEnglish = true;
 		for (int i = 0; i < inputID.length(); i++) {
@@ -71,5 +65,4 @@ public class RegisterController {
 		}
 		return isEnglish;
 	}
-	// ------------------------------------------------------------
 }

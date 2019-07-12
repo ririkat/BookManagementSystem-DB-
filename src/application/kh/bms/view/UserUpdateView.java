@@ -48,8 +48,6 @@ public class UserUpdateView implements Initializable {
 	private Label lID;
 	private ObservableList<String> list = FXCollections.observableArrayList("남자", "여자");
 
-//	private LoadSave dao = LoadSave.getDao();
-
 	private User user = UserSearchView.getSelectUser();
 
 	private void resetTextfield() {
@@ -61,7 +59,6 @@ public class UserUpdateView implements Initializable {
 		comGender.setPromptText("Gender");
 	}
 
-	// Combox의 초기값을 list로 설정, 회원 정보 수정창 로드시에 Data를 불러들임
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		user = UserSearchView.getSelectUser();
@@ -76,7 +73,6 @@ public class UserUpdateView implements Initializable {
 		tCheck.setText("");
 	}
 
-	// 뒤로가기 버튼 누를시 해당 플랫폼 종료
 	@FXML
 	private void backMove() {
 		try {
@@ -95,8 +91,6 @@ public class UserUpdateView implements Initializable {
 		}
 	}
 
-	// 회원 정보 수정시 설정된 PW길이 8~12자 체크 로직 수행후 True 면 유저 정보 업데이트
-	// False 일시 패스워드 길이 에러 출력
 	@FXML
 	private void updateUser() {
 		System.out.println(comGender.getValue().toString());
@@ -104,9 +98,5 @@ public class UserUpdateView implements Initializable {
 				comGender.getValue().toString(), tfPhone.getText());
 		backMove();
 	}
-
-//	@FXML
-//	private void comboChanged(ActionEvent e) {
-//	}
 
 }

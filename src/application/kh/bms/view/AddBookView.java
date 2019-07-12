@@ -14,7 +14,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AddBookView /* implements Initializable */ {
+public class AddBookView {
 
 	boolean result;
 
@@ -39,12 +39,6 @@ public class AddBookView /* implements Initializable */ {
 		result = bookController.checkCode(code);
 	}
 
-//      if(result==true) {         // BookController().checkCode() 메서드를 통해 중복값이
-//                           // 없으면 true를 리턴, 즉 중복값이 없으면 아래 저장로직
-//      }else {
-//         System.out.println("Book Code 값이 중복되었습니다.");
-//      }
-
 	@FXML
 	public void failConfirm() {
 
@@ -59,7 +53,6 @@ public class AddBookView /* implements Initializable */ {
 		primaryStage.close();
 	}
 
-	// 반납하기 팝업창 확인버튼 누르면 꺼지기
 	@FXML
 	public void confirm() {
 		Stage primaryStage = (Stage) okayBtn.getScene().getWindow();
@@ -99,7 +92,6 @@ public class AddBookView /* implements Initializable */ {
 	@FXML
 	public void addTest() {
 
-//		System.out.println(tfCode.getText());
 		if (tfCode.getText().isEmpty() || tfBookName.getText().isEmpty() || tfAuthor.getText().isEmpty()
 				|| tfPublishingHouse.getText().isEmpty() || tfCategory.getText().isEmpty()
 				|| taCon.getText().isEmpty()) {
@@ -135,8 +127,6 @@ public class AddBookView /* implements Initializable */ {
 	}
 
 	public void resetInput() {
-		// private TextField tfBookName, tfAuthor, tfCode, tfPublishingHouse,
-		// tfCategory;
 		tfBookName.setText("");
 		tfAuthor.setText("");
 		tfCategory.setText("");
@@ -146,21 +136,3 @@ public class AddBookView /* implements Initializable */ {
 	}
 
 }
-
-//   @FXML
-//   public void moveBack() {
-//      System.exit(0);
-//   }
-
-//   @Override   저장된 데이터 확인
-//   public void initialize(URL location, ResourceBundle resources) {
-//      bookController.load();
-//   }
-
-//   @FXML      기존 파일 book객체 저장로직
-//   public void addTest() {
-//      BookModel newBook = new BookModel(tfCode.getText(), tfBookName.getText(), tfAuthor.getText(), tfPublishingHouse.getText(),
-//            tfCategory.getText());
-//
-//      bookController.addBook(newBook);
-//   }

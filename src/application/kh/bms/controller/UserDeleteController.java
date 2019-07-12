@@ -2,7 +2,6 @@ package application.kh.bms.controller;
 
 import java.util.ArrayList;
 
-
 import application.kh.bms.model.service.RentalService;
 import application.kh.bms.model.service.UserService;
 import application.kh.bms.model.vo.Rental;
@@ -13,7 +12,6 @@ public class UserDeleteController {
 
 	private RentalService rentalService = new RentalService();
 
-	// ÇØ¾ßÇÔ
 	public int checkUser(String id, String pw) {
 		int check = -1;
 		User temp = service.oneUserSelect(id);

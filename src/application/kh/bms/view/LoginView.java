@@ -1,6 +1,5 @@
 package application.kh.bms.view;
 
-
 import java.io.IOException;
 
 import application.kh.bms.controller.LoginController;
@@ -14,9 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class LoginView{
-//	private LoadSave dao = LoadSave.getDao();
-	
+public class LoginView {
+
 	@FXML
 	private TextField id;
 	@FXML
@@ -35,10 +33,9 @@ public class LoginView{
 		String loginPw = password.getText();
 
 		LoginController lc = new LoginController();
-		int check = lc.checkLogin(loginId,loginPw);
-		// 1-ID , 2-PW 3-LoginSuccess
-		
-		switch(check) {
+		int check = lc.checkLogin(loginId, loginPw);
+
+		switch (check) {
 		case 1:
 			lMessage.setText("ID를 잘못입력하셨습니다.");
 			break;
@@ -56,17 +53,16 @@ public class LoginView{
 				newStage.setScene(scene);
 				newStage.setTitle("도서조회");
 				newStage.show();
-				
-				Stage primaryStage = (Stage)loginButton.getScene().getWindow();
+
+				Stage primaryStage = (Stage) loginButton.getScene().getWindow();
 				primaryStage.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			break;
 		}
 	}
-	
+
 	@FXML
 	public void register() {
 		try {
@@ -77,14 +73,12 @@ public class LoginView{
 			newStage.setScene(scene);
 			newStage.setTitle("회원가입");
 			newStage.show();
-			
+
 			Stage primaryStage = (Stage) regiButton.getScene().getWindow();
 			primaryStage.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 
 }

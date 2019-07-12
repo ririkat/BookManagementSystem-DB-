@@ -10,7 +10,6 @@ import application.kh.bms.model.vo.BookModel;
 import application.kh.bms.model.vo.Rental;
 
 public class BookController {
-	// ¹Ù²ãº¼±î¿ä~??
 
 	int count = 0;
 	BookModel book = new BookModel();
@@ -57,12 +56,12 @@ public class BookController {
 	public void remove(String bookCode) {
 		realBooks = bs.selectAll();
 		String userId = im.getNowUser().getId();
-		Rental temp = rs.selectBookCode(userId,bookCode);
-		if (temp==null) {
+		Rental temp = rs.selectBookCode(userId, bookCode);
+		if (temp == null) {
 			bs.deleteBook(bookCode);
 		}
 	}
-	
+
 	public BookModel loadBook(String code) {
 		BookModel b = bs.oneBookSelect(code);
 		return b;

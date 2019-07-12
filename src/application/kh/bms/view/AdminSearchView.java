@@ -32,308 +32,261 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class AdminSearchView implements Initializable {
-   ////
 
-   // 어드민 서치 관리자 책 추가 수정 삭제 할 수 있는 화면
-   //
+	@FXML
+	private Button btnEdit, loodDetailBtn;
+	@FXML
+	private Button btnAll; // 전체보기
+	@FXML
+	private Button btnRemove;
+	@FXML
+	private Button btnbtnEdit;
+	@FXML
+	private Button btnAddBook;
+	@FXML
+	private Button btnSelect; // 조회
+	@FXML
+	private Button viewAll; // 전체보기
+	@FXML
+	private Button btnBack;
 
-   // 어드민 서치 관리자 책 추가 수정 삭제 할 수 있는 화면
-   //
+	@FXML
+	private TextField tfWord;
 
-   @FXML
-   private Button btnEdit, loodDetailBtn;
-   @FXML
-   private Button btnAll; // 전체보기
-   @FXML
-   private Button btnRemove;
-   @FXML
-   private Button btnbtnEdit;
-   @FXML
-   private Button btnAddBook;
-   @FXML
-   private Button btnSelect; // 조회
-   @FXML
-   private Button viewAll; // 전체보기
-   @FXML
-   private Button btnBack;
+	@FXML
+	private ComboBox<String> comboBox = new ComboBox<String>(); // 구분선택
 
-   @FXML
-   private TextField tfWord;
+	@FXML
+	private TableView<BookTable> tableView;
+	@FXML
+	private TableColumn<BookTable, String> codeCol; // 번호
+	@FXML
+	private TableColumn<BookTable, String> nameCol; // 도서명
+	@FXML
+	private TableColumn<BookTable, String> authorCol; // 저자
+	@FXML
+	private TableColumn<BookTable, String> pubCol; // 출판사
+	@FXML
+	private TableColumn<BookTable, String> cateCol; // 장르
+	@FXML
+	private TableColumn<BookTable, Boolean> rentalCol;// 대여여부
 
-   @FXML
-   private ComboBox<String> comboBox = new ComboBox<String>(); // 구분선택
+	static BookTable model = new BookTable();
 
-   @FXML
-   private TableView<BookTable> tableView;
-   @FXML
-   private TableColumn<BookTable, String> codeCol; // 번호
-   @FXML
-   private TableColumn<BookTable, String> nameCol; // 도서명
-   @FXML
-   private TableColumn<BookTable, String> authorCol; // 저자
-   @FXML
-   private TableColumn<BookTable, String> pubCol; // 출판사
-   @FXML
-   private TableColumn<BookTable, String> cateCol; // 장르
-   @FXML
-   private TableColumn<BookTable, Boolean> rentalCol;// 대여여부
+	BookModel book = new BookModel();
+	BookSearchController bookSearchController = new BookSearchController();
+	BookController bookController = new BookController();
+	List<BookTable> books = new ArrayList<BookTable>();
+	List<BookModel> realBooks = null;
+	private List<BookModel> temp = bookController.getBooks();
+	private InformationManager im = InformationManager.getInformationManager();
+	public static BookTable selBook = new BookTable();
 
-//   private LoadSave dao = LoadSave.getDao();
-   
-   
-   static BookTable model = new BookTable();
+	public static BookTable getSelBook() {
+		return selBook;
+	}
 
-   BookModel book = new BookModel();
-   BookSearchController bookSearchController = new BookSearchController();
-   BookController bookController = new BookController();
-   List<BookTable> books = new ArrayList<BookTable>();
-   List<BookModel> realBooks = null;
-   private List<BookModel> temp = bookController.getBooks();
-   private InformationManager im = InformationManager.getInformationManager();
-   public static BookTable selBook = new BookTable();
+	public static void setSelectUser(BookModel selectBook) {
+		AdminSearchView.selBook = selBook;
+	}
 
-   public static BookTable getSelBook() {
-      return selBook;
-   }
+	public int row = -1;
 
-   public static void setSelectUser(BookModel selectBook) {
-      AdminSearchView.selBook = selBook;
-   }
+	private ObservableList<String> comboList = FXCollections.observableArrayList("도서명", "저자", "출판사", "장르");
 
-   // 테이블열선택
-   public int row = -1;
+	private static String tfsel; // 텍스트필드 저장용
+	private static String combosel; // 콤보박스 저장용
+	static {
+		tfsel = "";
+		combosel = "";
+	}
 
-   // 콤보박스 list
-   private ObservableList<String> comboList = FXCollections.observableArrayList("도서명", "저자", "출판사", "장르");
+	public ObservableList<BookTable> bookList = FXCollections.observableArrayList();
 
-   private static String tfsel; // 텍스트필드 저장용
-   private static String combosel; // 콤보박스 저장용
-   static {
-      tfsel = "";
-      combosel = "";
-   }
+	public ObservableList<BookTable> selectBookList = FXCollections.observableArrayList();
 
-   // 전체조회 테이블용
-   public ObservableList<BookTable> bookList = FXCollections.observableArrayList();
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 
-   // 선택조회 테이블용
-   public ObservableList<BookTable> selectBookList = FXCollections.observableArrayList();
+		codeCol.setCellValueFactory(new PropertyValueFactory<BookTable, String>("code"));
+		nameCol.setCellValueFactory(new PropertyValueFactory<BookTable, String>("bookName"));
+		authorCol.setCellValueFactory(new PropertyValueFactory<BookTable, String>("author"));
+		pubCol.setCellValueFactory(new PropertyValueFactory<BookTable, String>("publishingHouse"));
+		cateCol.setCellValueFactory(new PropertyValueFactory<BookTable, String>("category"));
+		rentalCol.setCellValueFactory(new PropertyValueFactory<BookTable, Boolean>("rental"));
+		books = bookSearchController.bookTableLoad();
+		for (int i = 0; i < books.size(); i++) {
+			bookList.add(books.get(i));
+		}
+		tableView.setItems(bookList);
 
-   @Override
-   public void initialize(URL location, ResourceBundle resources) {
+		comboBox.setItems(comboList);
 
-      // bookSearchController.bookTableSave(); //파일 저장 test용
+		tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<BookTable>() {
+			public void changed(ObservableValue<? extends BookTable> observable, BookTable oldValue,
+					BookTable newValue) {
+				model = tableView.getSelectionModel().getSelectedItem();
 
-      codeCol.setCellValueFactory(new PropertyValueFactory<BookTable, String>("code"));
-      nameCol.setCellValueFactory(new PropertyValueFactory<BookTable, String>("bookName"));
-      authorCol.setCellValueFactory(new PropertyValueFactory<BookTable, String>("author"));
-      pubCol.setCellValueFactory(new PropertyValueFactory<BookTable, String>("publishingHouse"));
-      cateCol.setCellValueFactory(new PropertyValueFactory<BookTable, String>("category"));
-      rentalCol.setCellValueFactory(new PropertyValueFactory<BookTable, Boolean>("rental"));
-      books = bookSearchController.bookTableLoad();
-//
-//      if (combosel == "" && tfsel == "") {
-      for (int i = 0; i < books.size(); i++) {
-         bookList.add(books.get(i));
-      }
-      tableView.setItems(bookList);
-//
-//      }
+				if (model.getRental().getValue()) {
+					btnEdit.setDisable(true);
+				} else {
+					btnEdit.setDisable(false);
+				}
+			}
+		});
+	}
 
-//      else {
-//         tableView.setItems(selectBookList);
-//      }
+	@FXML
+	public void runRemove() {
 
-      comboBox.setItems(comboList);
+		bookController.remove(tableView.getSelectionModel().getSelectedItem().getCode());
 
-      // -----------별리수정시작
+		bookList.clear();
+		books = bookSearchController.bookTableLoad();
 
-      tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<BookTable>() {
-         public void changed(ObservableValue<? extends BookTable> observable, BookTable oldValue,
-               BookTable newValue) {
-            model = tableView.getSelectionModel().getSelectedItem();
+		for (int i = 0; i < books.size(); i++) {
+			bookList.add(books.get(i));
+		}
+		tableView.setItems(bookList);
 
-            if (model.getRental().getValue()) {
-               btnEdit.setDisable(true);
-            } else {
-               btnEdit.setDisable(false);
-            }
-         }
-      });
-   }
+	}
 
-   // 전체조회 하고, 조회된 테이블의 현재 책의 렌탈 값을 true인지, false인지 확인
-   // 만약 true면 삭제 불가
-   // false 면 어레이 리스트에서 제거
-   // cf) nowBook은 코드값만 넘겨줌
-   // 렌탈을 했으면 true
+	@FXML
+	public void moveBack() {
+		try {
+			Stage newStage = new Stage();
+			Parent root = FXMLLoader
+					.load(getClass().getClassLoader().getResource("application/kh/bms/view/MainSearch.fxml"));
+			Scene scene = new Scene(root);
+			newStage.setScene(scene);
+			newStage.setTitle("도서 조회");
+			newStage.show();
 
-   @FXML
-   public void runRemove() {
+			Stage primaryStage = (Stage) btnBack.getScene().getWindow();
+			primaryStage.close();
 
-      bookController.remove(tableView.getSelectionModel().getSelectedItem().getCode());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-      bookList.clear();
-      books = bookSearchController.bookTableLoad();
+	@FXML
+	public void addBook() {
+		try {
+			Stage newStage = new Stage();
+			Parent root = FXMLLoader
+					.load(getClass().getClassLoader().getResource("application/kh/bms/view/AddBook.fxml"));
+			Scene scene = new Scene(root);
+			newStage.setScene(scene);
+			newStage.setTitle("Book Management System");
+			newStage.show();
 
-      for (int i = 0; i < books.size(); i++) {
-         bookList.add(books.get(i));
-      }
-      tableView.setItems(bookList);
+			Stage primaryStage = (Stage) btnSelect.getScene().getWindow();
+			primaryStage.close();
 
-   }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-   @FXML
-   public void moveBack() {
-      try {
-         Stage newStage = new Stage();
-         Parent root = FXMLLoader
-               .load(getClass().getClassLoader().getResource("application/kh/bms/view/MainSearch.fxml"));
-         Scene scene = new Scene(root);
-         newStage.setScene(scene);
-         newStage.setTitle("도서 조회");
-         newStage.show();
+	@FXML
+	public void editBook() {
 
-         Stage primaryStage = (Stage) btnBack.getScene().getWindow();
-         primaryStage.close();
+		try {
 
-      } catch (IOException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
-   }
+			im.setNowBook(bookController.loadBook(model.getCode()));
 
-   @FXML
-   public void addBook() {
-      try {
-         Stage newStage = new Stage();
-         Parent root = FXMLLoader
-               .load(getClass().getClassLoader().getResource("application/kh/bms/view/AddBook.fxml"));
-         Scene scene = new Scene(root);
-         newStage.setScene(scene);
-         newStage.setTitle("Book Management System");
-         newStage.show();
+			Stage newStage = new Stage();
+			Parent root = FXMLLoader
+					.load(getClass().getClassLoader().getResource("application/kh/bms/view/BookUpdateView2.fxml"));
+			Scene scene = new Scene(root);
+			newStage.setScene(scene);
+			newStage.setTitle("Book Management System");
+			newStage.show();
 
-         Stage primaryStage = (Stage) btnSelect.getScene().getWindow();
-         primaryStage.close();
+			Stage primaryStage = (Stage) btnEdit.getScene().getWindow();
 
-      } catch (IOException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
-   }
+			primaryStage.close();
 
-   @FXML
-   public void editBook() {
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-      try {
-    	  
-    	  im.setNowBook(bookController.loadBook(model.getCode()));
+	}
 
-//         System.out.println("받아왔니? : " + model.getCode());
-//         SelectedBook.selBook.setBookName(model.getBookName());
-//         SelectedBook.selBook.setAuthor(model.getAuthor());
-//         SelectedBook.selBook.setPublishingHouse(model.getPublishingHouse());
-//         SelectedBook.selBook.setCategory(model.getCategory());
-//         SelectedBook.selBook.setRental(model.getRental().get());
-//         SelectedBook.selBook.setCode(model.getCode());
-//         System.out.println("들어갔니? : " + SelectedBook.selBook.getCode());
+	@FXML
+	public void viewAll() {
 
-         Stage newStage = new Stage();
-         Parent root = FXMLLoader
-               .load(getClass().getClassLoader().getResource("application/kh/bms/view/BookUpdateView2.fxml"));
-         Scene scene = new Scene(root);
-         newStage.setScene(scene);
-         newStage.setTitle("Book Management System");
-         newStage.show();
+		comboBox.setValue("선택");
+		bookList.clear();
+		books = bookSearchController.bookTableLoad();
 
-         Stage primaryStage = (Stage) btnEdit.getScene().getWindow();
+		tfWord.setText("");
 
-         primaryStage.close();
+		for (int i = 0; i < books.size(); i++) {
+			bookList.add(books.get(i));
+		}
+		tableView.setItems(bookList);
 
-      } catch (IOException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
+	}
 
-   }
+	@FXML
+	public void selectSearch() {
 
-   // 전체보기 버튼 클릭 액션 메소드
-   @FXML
-   public void viewAll() {
-   
-      comboBox.setValue("선택");
-      bookList.clear();
-      books = bookSearchController.bookTableLoad();
+		tfsel = tfWord.getText();
+		System.out.println(tfsel);
+		combosel = comboBox.getValue();
+		System.out.println(combosel);
 
-      tfWord.setText("");
-      
-      for (int i = 0; i < books.size(); i++) {
-         bookList.add(books.get(i));
-      }
-      tableView.setItems(bookList);
+		if (tfsel.isEmpty() || (combosel == null || combosel.equals("선택"))) {
+			System.out.println("검색조건을 입력해주세요");
+		} else {
+			bookList.clear();
+			int j = 0;
+			switch (combosel) {
+			case "도서명":
+				for (j = 0; j < books.size(); j++) {
+					if (books.get(j).getBookName().contains(tfsel)) {
+						bookList.add(books.get(j));
+					}
+				}
+				break;
+			case "저자":
+				for (j = 0; j < books.size(); j++) {
+					if (books.get(j).getAuthor().contains(tfsel)) {
+						;
+						bookList.add(books.get(j));
+					}
+				}
+				break;
+			case "출판사":
+				for (j = 0; j < books.size(); j++) {
+					if (books.get(j).getPublishingHouse().contains(tfsel)) {
+						bookList.add(books.get(j));
+					}
 
-      
-   }
+				}
+				break;
+			case "장르":
+				for (j = 0; j < books.size(); j++) {
+					if (books.get(j).getCategory().contains(tfsel)) {
+						bookList.add(books.get(j));
+					}
+				}
+				break;
+			}
 
-   // 조회버튼 클릭 매소드
-   @FXML
-   public void selectSearch() {
+			tableView.setItems(bookList);
+		}
 
-      tfsel = tfWord.getText();
-      System.out.println(tfsel);
-      combosel = comboBox.getValue();
-      System.out.println(combosel);
+	}
 
-      if (tfsel.isEmpty() || (combosel == null||combosel.equals("선택"))) {
-         System.out.println("검색조건을 입력해주세요");
-      } else {    
-         bookList.clear();
-         int j = 0;
-         switch (combosel) {
-         case "도서명":
-            for (j = 0; j < books.size(); j++) {
-               if (books.get(j).getBookName().contains(tfsel)) {
-                  bookList.add(books.get(j));
-               }
-            }
-            break;
-         case "저자":
-            for (j = 0; j < books.size(); j++) {
-               if (books.get(j).getAuthor().contains(tfsel)) {
-                  ;
-                  bookList.add(books.get(j));
-               }
-            }
-            break;
-         case "출판사":
-            for (j = 0; j < books.size(); j++) {
-               if (books.get(j).getPublishingHouse().contains(tfsel)) {
-                  bookList.add(books.get(j));
-               }
+	public TextField getTfWord() {
+		return tfWord;
+	}
 
-            }
-            break;
-         case "장르":
-            for (j = 0; j < books.size(); j++) {
-               if (books.get(j).getCategory().contains(tfsel)) {
-                  bookList.add(books.get(j));
-               }
-            }
-            break;
-         }
-
-         tableView.setItems(bookList);
-      }
-
-   }
-
-   public TextField getTfWord() {
-      return tfWord;
-   }
-
-   public void setTfWord(TextField tfWord) {
-      this.tfWord = tfWord;
-   }
+	public void setTfWord(TextField tfWord) {
+		this.tfWord = tfWord;
+	}
 
 }

@@ -31,28 +31,21 @@ public class UserDeleteView implements Initializable {
 	@FXML
 	private Label checkIdLabel, checkPwLabel;
 
-//	private LoadSave dao = LoadSave.getDao();
-//	private ArrayList<BookModel> books = dao.loadBook();
 	private User user = UserSearchView.getSelectUser();
-//	private ArrayList<User> users = dao.loadUser();
 	private UserDeleteController dc = new UserDeleteController();
 	private Popup popup;
 
 	@FXML
 	public void deleteUser() {
-		// 라벨... 수정하기
 		checkIdLabel.setText("");
 		checkPwLabel.setText("");
 
-		String inputId = checkId.getText();// 탈퇴유저확인 시 입력한 텍스트필드에서 받아온 아이디 값
+		String inputId = checkId.getText();
 		String identifyPw = checkPw.getText();
-//		ArrayList<User> users = dao.loadUser();
 
 		int check = dc.checkUser(inputId, identifyPw);
 		if (check == -1) {
-			//-----------------------------------------------
 			fail();
-			//-----------------------------------------------
 		} else {
 			dc.deleteUser(inputId);
 			try {
@@ -67,14 +60,12 @@ public class UserDeleteView implements Initializable {
 				Stage primaryStage = (Stage) dropBtn.getScene().getWindow();
 				primaryStage.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 
 	}
 
-	// 뒤로가기
 	@FXML
 	public void back() {
 		try {
@@ -89,7 +80,6 @@ public class UserDeleteView implements Initializable {
 			Stage primaryStage = (Stage) btnBack.getScene().getWindow();
 			primaryStage.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -97,11 +87,9 @@ public class UserDeleteView implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 
 	}
 
-	// -----------------------------------------------
 	@FXML
 	public void fail() {
 		try {
@@ -122,5 +110,4 @@ public class UserDeleteView implements Initializable {
 		Stage primaryStage = (Stage) okayBtn.getScene().getWindow();
 		primaryStage.close();
 	}
-	// -----------------------------------------------
 }
